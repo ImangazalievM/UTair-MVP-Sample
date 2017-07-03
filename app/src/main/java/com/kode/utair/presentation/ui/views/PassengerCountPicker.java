@@ -126,7 +126,7 @@ public class PassengerCountPicker extends RelativeLayout {
     }
 
     private void decrementKid() {
-        if (adultsCount == 0) {
+        if (kidsCount == 0) {
             return;
         }
 
