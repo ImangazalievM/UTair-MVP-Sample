@@ -1,0 +1,98 @@
+<resources>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.Blue" parent="AppTheme.Base">
+        <item name="android:windowBackground">@color/color_blue</item>
+    </style>
+
+    <style name="AppTheme.White" parent="AppTheme.Base">
+        <item name="android:windowBackground">@color/color_white</item>
+        <item name="actionBarTheme">@style/WhiteToolbar</item>
+    </style>
+
+    <style name="WhiteDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@drawable/horizontal_divider_white</item>
+    </style>
+
+    <style name="WhiteToolbar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="navigationIcon">@drawable/ic_arrow_back_blue_24dp</item>
+        <item name="android:background">@color/color_white</item>
+    </style>
+
+    <style name="CityNameText" parent="@android:style/TextAppearance">
+        <item name="fontPath">@string/fontOpenSansBold</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AirportName" parent="@android:style/TextAppearance">
+        <item name="fontPath">@string/fontOpenSansLight</item>
+        <item name="android:textColor">@color/text_white50</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="FlightDateText" parent="@android:style/TextAppearance">
+        <item name="fontPath">@string/fontOpenSansBold</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="FlightDateLabel" parent="@android:style/TextAppearance">
+        <item name="fontPath">@string/fontOpenSansRegular</item>
+        <item name="android:textColor">@color/text_white50</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="PassengerCounterButton">
+        <item name="android:layout_width">45dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:background">@drawable/blue_clickable_background</item>
+        <item name="android:clickable">true</item>
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <style name="PassengerCounterIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:scaleType">center</item>
+    </style>
+
+    <style name="PassengerCounterValue" parent="@android:style/TextAppearance">
+        <item name="fontPath">@string/fontOpenSansRegular</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="PassengerCounterLabel" parent="@android:style/TextAppearance">
+        <item name="fontPath">@string/fontOpenSansLight</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="CityForecastTab">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/white_clickable_background</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="CityForecastTabLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:duplicateParentState">true</item>
+        <item name="android:textColor">@color/tab_text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+</resources>

@@ -1,0 +1,52 @@
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="#ffffff"
+    app:navigationIcon="@drawable/ic_arrow_back_blue_24dp"
+    app:theme="@style/WhiteToolbar">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/depart_city"
+            fontPath="@string/fontOpenSansBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:maxLines="1"
+            android:text="Москва"
+            android:textColor="#ff1a2027"
+            android:textSize="18sp"/>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            app:srcCompat="@drawable/ic_plane_forward_blue_20x17"/>
+
+        <TextView
+            android:id="@+id/arrive_city"
+            fontPath="@string/fontOpenSansBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Белгород"
+            android:textColor="#ff1a2027"
+            android:textSize="18sp"/>
+
+        <Space
+            android:layout_width="48dp"
+            android:layout_height="1dp"/>
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>

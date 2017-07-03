@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="find_flights_button_height">55dp</dimen>
+</resources>

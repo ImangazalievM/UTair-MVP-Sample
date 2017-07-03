@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/color_blue_dark</color>
+    <color name="colorPrimaryDark">@color/color_blue_dark</color>
+    <color name="colorAccent">@color/color_blue</color>
+
+    <color name="text_white">#ffffff</color>
+    <color name="text_white50">#AAffffff</color>
+    <color name="color_blue">#1156d7</color>
+    <color name="color_blue_dark">#114ab5</color>
+    <color name="color_blue_dark100">#0e3f9c</color>
+    <color name="color_white">#ffffff</color>
+    <color name="color_white50">#AAffffff</color>
+    <color name="color_light_gray">#eeeeee</color>
+
+    <color name="tab_text_color_inactive">#8090a6</color>
+    <color name="tab_text_color_active">#0d49b5</color>
+    <color name="tab_divider_color">#eeeeee</color>
+</resources>

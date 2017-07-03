@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_blue"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_blue"/>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/snackbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="50dp"
+                        android:layout_marginStart="30dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="80dp"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:srcCompat="@drawable/ic_start_point"/>
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="0dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/vertical_dashed_line_background"/>
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom"
+                                app:srcCompat="@drawable/ic_end_point"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:gravity="start"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:id="@+id/depart_city_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/blue_clickable_background"
+                                android:clickable="true"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:padding="15dp"
+                                >
+
+                                <TextView
+                                    android:id="@+id/depart_city"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Москва"
+                                    android:textAppearance="@style/CityNameText"/>
+
+                                <TextView
+                                    android:id="@+id/depart_airport"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Все аэропорты"
+                                    android:textAppearance="@style/AirportName"/>
+                            </LinearLayout>
+
+                            <View style="@style/WhiteDivider"/>
+
+                            <LinearLayout
+                                android:id="@+id/arrive_city_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/blue_clickable_background"
+                                android:clickable="true"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:padding="15dp"
+                                >
+
+                                <TextView
+                                    android:id="@+id/arrive_city"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Белгород"
+                                    android:textAppearance="@style/CityNameText"/>
+
+                                <TextView
+                                    android:id="@+id/arrive_airport"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Все аэропорты"
+                                    android:textAppearance="@style/AirportName"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/swap_cities_button"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="45dp"
+                        android:background="@drawable/swap_cities_background"
+                        android:clickable="true"
+                        android:scaleType="center"
+                        app:srcCompat="@drawable/ic_swap_cities"/>
+
+                </FrameLayout>
+
+                <View style="@style/WhiteDivider"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:gravity="start|center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/depart_date_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="60dp"
+                        android:background="@drawable/blue_clickable_background"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="5dp">
+
+                        <TextView
+                            android:id="@+id/depart_date_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/depart_direction"
+                            android:textAppearance="@style/FlightDateLabel"/>
+
+                        <TextView
+                            android:id="@+id/depart_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="18 авг, пт"
+                            android:textAppearance="@style/FlightDateText"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/return_date_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/blue_clickable_background"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="5dp"
+                        android:visibility="gone"
+                        >
+
+                        <TextView
+                            android:id="@+id/return_date_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/arrive_direction"
+                            android:textAppearance="@style/FlightDateLabel"/>
+
+                        <TextView
+                            android:id="@+id/return_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 сентября, вс"
+                            android:textAppearance="@style/FlightDateText"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/set_return_date_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/blue_clickable_background"
+                        android:clickable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="5dp"
+                        >
+
+                        <TextView
+                            fontPath="@string/fontOpenSansRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/set_return_date_button_background"
+                            android:drawablePadding="10dp"
+                            android:drawableStart="@drawable/ic_plus_10dp"
+                            android:gravity="center"
+                            android:padding="16dp"
+                            android:text="@string/arrive_direction"
+                            android:textColor="@color/text_white"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/clear_return_date_button"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/blue_clickable_background"
+                        android:clickable="true"
+                        android:scaleType="center"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_clear_return_date"/>
+                </LinearLayout>
+
+                <View style="@style/WhiteDivider"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <com.kode.utair.presentation.ui.views.PassengerCountPicker
+                        android:id="@+id/passenger_count_picker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <TextView
+        android:id="@+id/find_flights_button"
+        fontPath="@string/fontOpenSansSemibold"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/find_flights_button_height"
+        android:layout_gravity="bottom"
+        android:background="@drawable/find_flights_background"
+        android:clickable="true"
+        android:gravity="center"
+        android:text="@string/find_flights"
+        android:textAllCaps="true"
+        android:textColor="@color/text_white"/>
+</LinearLayout>
