@@ -2,12 +2,12 @@ package com.kode.utair.presentation.ui.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -45,7 +45,8 @@ public class MainActivity extends BaseMvpActivity implements MainView {
     private TextView departDateView;
     private View returnDateLayout;
     private TextView returnDateView;
-    private LinearLayout setReturnDateButton;
+    private LinearLayout returnDateButton;
+    private TextView returnDateButtonLabel;
     private View cleaReturnDateButton;
     private PassengerCountPicker passengerCountPicker;
     private View findFlightsButton;
@@ -80,18 +81,22 @@ public class MainActivity extends BaseMvpActivity implements MainView {
         departDateView = (TextView) findViewById(R.id.depart_date);
         returnDateLayout = findViewById(R.id.return_date_layout);
         returnDateView = (TextView) findViewById(R.id.return_date);
-        setReturnDateButton = (LinearLayout) findViewById(R.id.set_return_date_button);
+        returnDateButton = (LinearLayout) findViewById(R.id.return_date_button);
+        returnDateButtonLabel = (TextView) findViewById(R.id.return_date_button_label);
         cleaReturnDateButton = findViewById(R.id.clear_return_date_button);
         passengerCountPicker = (PassengerCountPicker) findViewById(R.id.passenger_count_picker);
         findFlightsButton = findViewById(R.id.find_flights_button);
         snackbarContainer = findViewById(R.id.snackbar_container);
+
+        VectorDrawableCompat plusIcon = VectorDrawableCompat.create(getResources(), R.drawable.ic_plus_10dp, getTheme());
+        returnDateButtonLabel.setCompoundDrawablesRelativeWithIntrinsicBounds(plusIcon, null, null, null);
 
         departCityLayout.setOnClickListener(v -> mainPresenter.onDepartCityClicked());
         arriveCityLayout.setOnClickListener(v -> mainPresenter.onArriveCityClicked());
         swapCitiesButton.setOnClickListener(v -> mainPresenter.onSwapCitiesButtonClicked());
         departDateLayout.setOnClickListener(v -> mainPresenter.onDepartDateClicked());
         returnDateLayout.setOnClickListener(v -> mainPresenter.onReturnDateClicked());
-        setReturnDateButton.setOnClickListener(v -> mainPresenter.onSetReturnDateButtonClicked());
+        returnDateButton.setOnClickListener(v -> mainPresenter.onSetReturnDateButtonClicked());
         cleaReturnDateButton.setOnClickListener(v -> mainPresenter.onClearReturnDateClicked());
         findFlightsButton.setOnClickListener(v -> mainPresenter.onFindFlightsButtonClicked());
     }
@@ -165,7 +170,7 @@ public class MainActivity extends BaseMvpActivity implements MainView {
 
     @Override
     public void showReturnDate(DateTime returnDate) {
-        setReturnDateButton.setVisibility(View.GONE);
+        returnDateButton.setVisibility(View.GONE);
         returnDateLayout.setVisibility(View.VISIBLE);
         cleaReturnDateButton.setVisibility(View.VISIBLE);
         returnDateView.setText(dateFormatter.format(returnDate.toDate()));
@@ -186,12 +191,12 @@ public class MainActivity extends BaseMvpActivity implements MainView {
 
     @Override
     public void showReturnDateButton() {
-        setReturnDateButton.setVisibility(View.VISIBLE);
+        returnDateButton.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideReturnDateButton() {
-        setReturnDateButton.setVisibility(View.GONE);
+        returnDateButton.setVisibility(View.GONE);
     }
 
     @Override

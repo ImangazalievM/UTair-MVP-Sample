@@ -18,7 +18,7 @@ public class UTairApplication extends Application {
     private static Context context;
 
     public UTairApplication() {
-        this.context = this;
+        context = this;
     }
 
     @Override

@@ -210,7 +210,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/set_return_date_button"
+                        android:id="@+id/return_date_button"
                         android:layout_width="wrap_content"
                         android:layout_height="70dp"
                         android:layout_marginStart="16dp"
@@ -223,12 +223,12 @@
                         >
 
                         <TextView
+                            android:id="@+id/return_date_button_label"
                             fontPath="@string/fontOpenSansRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/set_return_date_button_background"
                             android:drawablePadding="10dp"
-                            android:drawableStart="@drawable/ic_plus_10dp"
                             android:gravity="center"
                             android:padding="16dp"
                             android:text="@string/arrive_direction"
