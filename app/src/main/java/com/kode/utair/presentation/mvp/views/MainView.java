@@ -36,6 +36,7 @@ public interface MainView extends MvpView {
     void showReturnDateButton();
     void hideReturnDateButton();
 
+    void showNoNetworkMessage();
     void showValidationErrorMessage(String errorMessage);
 
     void openWeatherScreen();

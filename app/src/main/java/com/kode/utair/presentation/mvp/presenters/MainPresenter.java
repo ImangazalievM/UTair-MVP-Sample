@@ -3,6 +3,7 @@ package com.kode.utair.presentation.mvp.presenters;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.kode.utair.di.ApplicationComponent;
+import com.kode.utair.domain.exceptions.NoNetworkException;
 import com.kode.utair.domain.exceptions.WeatherSettingsValidationError;
 import com.kode.utair.domain.interactors.MainInteractor;
 import com.kode.utair.domain.models.WeatherSettings;
@@ -162,7 +163,15 @@ public class MainPresenter extends MvpPresenter<MainView> {
                     Collections.sort(cities, String::compareToIgnoreCase);
                     this.cities = cities;
                     successCallback.accept(cities);
-                });
+                }, this::handleFetchCitiesError);
+    }
+
+    private void handleFetchCitiesError(Throwable throwable) {
+        if (throwable instanceof NoNetworkException) {
+            getViewState().showNoNetworkMessage();
+        } else {
+            DebugUtils.showDebugErrorMessage(throwable);
+        }
     }
 
 }

@@ -15,7 +15,7 @@
     <string name="fontRobotoMedium">fonts/Roboto-Medium.ttf</string>
     <string name="city_selection">Выбор города</string>
     <string name="input_your_city">Введите название вашего города</string>
-    <string name="no_network_message">Проверьте подключение к интернет</string>
+    <string name="no_network_message">Проверьте подключение к интернету</string>
     <string name="max_passenger_count_message">Пассажиров должно быть не более %d человек</string>
     <string name="babies_less_adults_message">Младенцев не должно быть больше, чем взрослых</string>
     <string name="depart_city_is_empty_message">Введите пункт отправления</string>

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -197,6 +198,11 @@ public class MainActivity extends BaseMvpActivity implements MainView {
     @Override
     public void hideReturnDateButton() {
         returnDateButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showNoNetworkMessage() {
+        Toast.makeText(this, getString(R.string.no_network_message), Toast.LENGTH_SHORT).show();
     }
 
     @Override
