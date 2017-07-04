@@ -67,7 +67,7 @@
 
     <style name="PassengerCounterValue" parent="@android:style/TextAppearance">
         <item name="fontPath">@string/fontOpenSansRegular</item>
-        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textColor">@color/passenger_counter_value_color</item>
         <item name="android:textSize">24sp</item>
     </style>
 

@@ -17,16 +17,19 @@ public class PassengerCountPicker extends RelativeLayout {
 
     private ImageView adultPassengerIncrementButton;
     private ImageView adultPassengerDecrementButton;
+    private ImageView adultCounteIcon;
     private TextView adultCounterLabel;
-    private TextView adultCounterCount;
+    private TextView adultCounterValue;
 
     private ImageView kidPassengerIncrementButton;
     private ImageView kidPassengerDecrementButton;
+    private ImageView kidCounteIcon;
     private TextView kidCounterLabel;
     private TextView kidCounterValue;
 
     private ImageView babyPassengerIncrementButton;
     private ImageView babyPassengerDecrementButton;
+    private ImageView babyCounteIcon;
     private TextView babyPassengerLabel;
     private TextView babyCounterValue;
 
@@ -51,15 +54,17 @@ public class PassengerCountPicker extends RelativeLayout {
         inflater.inflate(R.layout.passenger_count_picker_view, this, true);
 
         adultCounterLabel = (TextView) findViewById(R.id.adult_counter_label);
-        adultCounterCount = (TextView) findViewById(R.id.adult_counter_count);
+        adultCounterValue = (TextView) findViewById(R.id.adult_counter_value);
+        adultCounteIcon = (ImageView) findViewById(R.id.adult_counter_icon);
         adultPassengerIncrementButton = (ImageView) findViewById(R.id.adult_passenger_increment_button);
         adultPassengerDecrementButton = (ImageView) findViewById(R.id.adult_passenger_decrement_button);
-        adultCounterCount.setText(String.valueOf(adultsCount));
+        adultCounterValue.setText(String.valueOf(adultsCount));
         adultPassengerIncrementButton.setOnClickListener(v -> incrementAdult());
         adultPassengerDecrementButton.setOnClickListener(v -> decrementAdult());
 
         kidCounterLabel = (TextView) findViewById(R.id.kid_counter_label);
-        kidCounterValue = (TextView) findViewById(R.id.kid_counter_count);
+        kidCounterValue = (TextView) findViewById(R.id.kid_counter_value);
+        kidCounteIcon = (ImageView) findViewById(R.id.kid_counter_icon);
         kidPassengerIncrementButton = (ImageView) findViewById(R.id.kid_passenger_increment_button);
         kidPassengerDecrementButton = (ImageView) findViewById(R.id.kid_passenger_decrement_button);
         kidCounterValue.setText(String.valueOf(kidsCount));
@@ -67,7 +72,8 @@ public class PassengerCountPicker extends RelativeLayout {
         kidPassengerDecrementButton.setOnClickListener(v -> decrementKid());
 
         babyPassengerLabel = (TextView) findViewById(R.id.baby_counter_label);
-        babyCounterValue = (TextView) findViewById(R.id.baby_counter_count);
+        babyCounterValue = (TextView) findViewById(R.id.baby_counter_value);
+        babyCounteIcon = (ImageView) findViewById(R.id.baby_counter_icon);
         babyPassengerIncrementButton = (ImageView) findViewById(R.id.baby_passenger_increment_button);
         babyPassengerDecrementButton = (ImageView) findViewById(R.id.baby_passenger_decrement_button);
         babyCounterValue.setText(String.valueOf(babiesCount));
@@ -78,16 +84,12 @@ public class PassengerCountPicker extends RelativeLayout {
     }
 
     private void updateViewsState() {
-        boolean enableAdultsCounter = adultsCount != 1;
-        adultCounterLabel.setEnabled(enableAdultsCounter);
-        adultCounterCount.setEnabled(enableAdultsCounter);
-
         boolean enableKidsCounter = kidsCount != 0;
-        kidCounterLabel.setEnabled(enableKidsCounter);
+        kidCounteIcon.setEnabled(enableKidsCounter);
         kidCounterValue.setEnabled(enableKidsCounter);
 
         boolean enableBabiesCounter = babiesCount != 0;
-        babyPassengerLabel.setEnabled(enableBabiesCounter);
+        babyCounteIcon.setEnabled(enableBabiesCounter);
         babyCounterValue.setEnabled(enableBabiesCounter);
     }
 
@@ -98,7 +100,6 @@ public class PassengerCountPicker extends RelativeLayout {
         }
 
         setAdultValue(++adultsCount);
-        calculateSummaryCount();
     }
 
     private void decrementAdult() {
@@ -107,12 +108,13 @@ public class PassengerCountPicker extends RelativeLayout {
         }
 
         setAdultValue(--adultsCount);
-        calculateSummaryCount();
     }
 
     private void setAdultValue(int value) {
-        adultCounterCount.setText(String.valueOf(value));
-        animateValueView(adultCounterCount);
+        adultCounterValue.setText(String.valueOf(value));
+        animateValueView(adultCounterValue);
+        calculateSummaryCount();
+        updateViewsState();
     }
 
     private void incrementKid() {
@@ -122,7 +124,6 @@ public class PassengerCountPicker extends RelativeLayout {
         }
 
         setKidValue(++kidsCount);
-        calculateSummaryCount();
     }
 
     private void decrementKid() {
@@ -131,12 +132,13 @@ public class PassengerCountPicker extends RelativeLayout {
         }
 
         setKidValue(--kidsCount);
-        calculateSummaryCount();
     }
 
     private void setKidValue(int value) {
         kidCounterValue.setText(String.valueOf(value));
         animateValueView(kidCounterValue);
+        calculateSummaryCount();
+        updateViewsState();
     }
 
     private void incrementBaby() {
@@ -151,7 +153,6 @@ public class PassengerCountPicker extends RelativeLayout {
         }
 
         setBabyValue(++babiesCount);
-        calculateSummaryCount();
     }
 
     private void decrementBaby() {
@@ -160,12 +161,13 @@ public class PassengerCountPicker extends RelativeLayout {
         }
 
         setBabyValue(--babiesCount);
-        calculateSummaryCount();
     }
 
     private void setBabyValue(int value) {
         babyCounterValue.setText(String.valueOf(value));
         animateValueView(babyCounterValue);
+        calculateSummaryCount();
+        updateViewsState();
     }
 
     private void animateValueView(TextView textView) {

@@ -32,14 +32,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/adult_counter_count"
+                    android:id="@+id/adult_counter_value"
                     android:textAppearance="@style/PassengerCounterValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2"/>
 
                 <ImageView
-                    android:id="@+id/adult_count_icon"
+                    android:id="@+id/adult_counter_icon"
                     style="@style/PassengerCounterIcon"
                     app:srcCompat="@drawable/ic_passenger_adult"/>
             </LinearLayout>
@@ -82,14 +82,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/kid_counter_count"
+                    android:id="@+id/kid_counter_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:textAppearance="@style/PassengerCounterValue"/>
 
                 <ImageView
-                    android:id="@+id/kid_count_image"
+                    android:id="@+id/kid_counter_icon"
                     style="@style/PassengerCounterIcon"
                     app:srcCompat="@drawable/ic_passenger_kid"/>
             </LinearLayout>
@@ -132,15 +132,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/baby_counter_count"
+                    android:id="@+id/baby_counter_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1"
-                    android:textColor="@color/text_white"
                     android:textAppearance="@style/PassengerCounterValue"/>
 
                 <ImageView
-                    android:id="@+id/baby_count_image"
+                    android:id="@+id/baby_counter_icon"
                     style="@style/PassengerCounterIcon"
                     app:srcCompat="@drawable/ic_passenger_baby"/>
             </LinearLayout>

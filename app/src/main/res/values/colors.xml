@@ -16,4 +16,7 @@
     <color name="tab_text_color_inactive">#8090a6</color>
     <color name="tab_text_color_active">#0d49b5</color>
     <color name="tab_divider_color">#eeeeee</color>
+    <color name="passenger_counter_value_color_enabled">@color/text_white</color>
+    <color name="passenger_counter_value_color_disabed">@color/text_white50</color>
+
 </resources>

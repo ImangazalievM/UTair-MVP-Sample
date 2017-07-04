@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/passenger_counter_value_color_disabed"
+          android:state_enabled="false"/>
+    <item android:color="@color/passenger_counter_value_color_enabled"/>
+</selector>
