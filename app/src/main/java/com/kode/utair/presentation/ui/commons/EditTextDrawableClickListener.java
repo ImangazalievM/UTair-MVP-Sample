@@ -1,7 +1,7 @@
 package com.kode.utair.presentation.ui.commons;
 
 import android.graphics.drawable.Drawable;
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;

@@ -9,7 +9,7 @@
 
     <include layout="@layout/toolbar_blue"/>
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/snackbar_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -219,8 +219,7 @@
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:paddingEnd="5dp"
-                        android:paddingStart="5dp"
-                        >
+                        android:paddingStart="5dp">
 
                         <TextView
                             android:id="@+id/return_date_button_label"
@@ -266,7 +265,7 @@
             </LinearLayout>
 
         </ScrollView>
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <TextView
         android:id="@+id/find_flights_button"

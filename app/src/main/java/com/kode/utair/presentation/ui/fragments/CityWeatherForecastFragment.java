@@ -1,15 +1,14 @@
 package com.kode.utair.presentation.ui.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.kode.utair.R;
@@ -18,6 +17,7 @@ import com.kode.utair.domain.models.WeatherForecastEntity;
 import com.kode.utair.presentation.mvp.presenters.CityWeatherForecastPresenter;
 import com.kode.utair.presentation.mvp.views.CityWeatherForecastView;
 import com.kode.utair.presentation.ui.adapters.DailyForecastAdapter;
+import com.kode.utair.presentation.ui.base.MvpAppCompatFragment;
 
 import java.util.List;
 

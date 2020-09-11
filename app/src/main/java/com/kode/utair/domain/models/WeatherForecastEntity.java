@@ -1,6 +1,6 @@
 package com.kode.utair.domain.models;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.joda.time.DateTime;
 

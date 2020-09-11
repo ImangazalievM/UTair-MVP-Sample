@@ -1,8 +1,6 @@
 package com.kode.utair.data.network.responses;
 
-import android.support.annotation.NonNull;
-
-import com.google.gson.annotations.SerializedName;
+import androidx.annotation.NonNull;
 
 import java.util.List;
 

@@ -11,7 +11,7 @@ public class DebugUtils {
     public static void showDebugErrorMessage(Throwable throwable) {
         if (ERRORS_ENABLED) {
             throwable.printStackTrace();
-            Toast.makeText(UTairApplication.getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(UTairApplication.context, throwable.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

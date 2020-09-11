@@ -12,11 +12,13 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {AndroidModule.class, ApplicationModule.class, DataModule.class})
+@Component(modules = { AndroidModule.class, ApplicationModule.class, DataModule.class })
 public interface ApplicationComponent {
 
     void inject(MainPresenter presenter);
+
     void inject(WeatherForecastPresenter presenter);
+
     void inject(CityWeatherForecastPresenter presenter);
 
 }

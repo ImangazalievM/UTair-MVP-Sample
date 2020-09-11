@@ -1,6 +1,6 @@
 package com.kode.utair.domain.models;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public class WeatherSettings {
 
