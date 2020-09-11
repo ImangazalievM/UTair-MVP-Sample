@@ -14,7 +14,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/depart_city"
+            android:id="@+id/departCityLabel"
             fontPath="@string/fontOpenSansBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
             app:srcCompat="@drawable/ic_plane_forward_blue_20x17"/>
 
         <TextView
-            android:id="@+id/arrive_city"
+            android:id="@+id/arriveCityLabel"
             fontPath="@string/fontOpenSansBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

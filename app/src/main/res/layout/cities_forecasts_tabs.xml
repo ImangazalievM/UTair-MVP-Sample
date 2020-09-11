@@ -10,7 +10,7 @@
     >
 
     <FrameLayout
-        android:id="@+id/forward_tab"
+        android:id="@+id/forwardTab"
         style="@style/CityForecastTab">
 
         <TextView
@@ -28,7 +28,7 @@
         android:background="@color/tab_divider_color"/>
 
     <FrameLayout
-        android:id="@+id/return_tab"
+        android:id="@+id/returnTab"
         style="@style/CityForecastTab">
 
         <TextView

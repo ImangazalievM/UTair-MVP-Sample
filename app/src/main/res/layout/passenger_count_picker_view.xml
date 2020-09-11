@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_blue"
-    android:orientation="horizontal"
-    >
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,9 +13,9 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/adult_passenger_increment_button"
+            android:id="@+id/adultPassengerIncrementButton"
             style="@style/PassengerCounterButton"
-            app:srcCompat="@drawable/ic_plus_10dp"/>
+            app:srcCompat="@drawable/ic_plus_10dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -32,30 +30,30 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/adult_counter_value"
-                    android:textAppearance="@style/PassengerCounterValue"
+                    android:id="@+id/adultCounterValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2"/>
+                    android:text="2"
+                    android:textAppearance="@style/PassengerCounterValue" />
 
                 <ImageView
-                    android:id="@+id/adult_counter_icon"
+                    android:id="@+id/adultCounteIcon"
                     style="@style/PassengerCounterIcon"
-                    app:srcCompat="@drawable/ic_passenger_adult"/>
+                    app:srcCompat="@drawable/ic_passenger_adult" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/adult_counter_label"
-                android:textAppearance="@style/PassengerCounterLabel"
+                android:id="@+id/adultCounterLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Взрослый"/>
+                android:text="Взрослый"
+                android:textAppearance="@style/PassengerCounterLabel" />
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/adult_passenger_decrement_button"
+            android:id="@+id/adultPassengerDecrementButton"
             style="@style/PassengerCounterButton"
-            app:srcCompat="@drawable/ic_minus_10dp"/>
+            app:srcCompat="@drawable/ic_minus_10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,9 +63,9 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/kid_passenger_increment_button"
+            android:id="@+id/kidPassengerIncrementButton"
             style="@style/PassengerCounterButton"
-            app:srcCompat="@drawable/ic_plus_10dp"/>
+            app:srcCompat="@drawable/ic_plus_10dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -82,30 +80,30 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/kid_counter_value"
+                    android:id="@+id/kidCounterValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
-                    android:textAppearance="@style/PassengerCounterValue"/>
+                    android:textAppearance="@style/PassengerCounterValue" />
 
                 <ImageView
-                    android:id="@+id/kid_counter_icon"
+                    android:id="@+id/kidCounteIcon"
                     style="@style/PassengerCounterIcon"
-                    app:srcCompat="@drawable/ic_passenger_kid"/>
+                    app:srcCompat="@drawable/ic_passenger_kid" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/kid_counter_label"
-                android:textAppearance="@style/PassengerCounterLabel"
+                android:id="@+id/kidCounterLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2-12 лет"/>
+                android:text="2-12 лет"
+                android:textAppearance="@style/PassengerCounterLabel" />
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/kid_passenger_decrement_button"
+            android:id="@+id/kidPassengerDecrementButton"
             style="@style/PassengerCounterButton"
-            app:srcCompat="@drawable/ic_minus_10dp"/>
+            app:srcCompat="@drawable/ic_minus_10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -115,9 +113,9 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/baby_passenger_increment_button"
+            android:id="@+id/babyPassengerIncrementButton"
             style="@style/PassengerCounterButton"
-            app:srcCompat="@drawable/ic_plus_10dp"/>
+            app:srcCompat="@drawable/ic_plus_10dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -132,31 +130,30 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/baby_counter_value"
+                    android:id="@+id/babyCounterValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1"
-                    android:textAppearance="@style/PassengerCounterValue"/>
+                    android:textAppearance="@style/PassengerCounterValue" />
 
                 <ImageView
-                    android:id="@+id/baby_counter_icon"
+                    android:id="@+id/babyCounteIcon"
                     style="@style/PassengerCounterIcon"
-                    app:srcCompat="@drawable/ic_passenger_baby"/>
+                    app:srcCompat="@drawable/ic_passenger_baby" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/baby_counter_label"
-                android:textAppearance="@style/PassengerCounterLabel"
+                android:id="@+id/babyPassengerLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="до 2-х лет"
-                />
+                android:textAppearance="@style/PassengerCounterLabel" />
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/baby_passenger_decrement_button"
+            android:id="@+id/babyPassengerDecrementButton"
             style="@style/PassengerCounterButton"
-            app:srcCompat="@drawable/ic_minus_10dp"/>
+            app:srcCompat="@drawable/ic_minus_10dp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_blue"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_blue"/>
+    <include layout="@layout/toolbar_blue" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/snackbar_container"
+        android:id="@+id/snackbarContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -27,15 +26,15 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginEnd="50dp"
                         android:layout_marginStart="30dp"
+                        android:layout_marginEnd="50dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -48,21 +47,21 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                app:srcCompat="@drawable/ic_start_point"/>
+                                app:srcCompat="@drawable/ic_start_point" />
 
                             <View
                                 android:layout_width="1dp"
                                 android:layout_height="0dp"
-                                android:layout_marginBottom="5dp"
                                 android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_weight="1"
-                                android:background="@drawable/vertical_dashed_line_background"/>
+                                android:background="@drawable/vertical_dashed_line_background" />
 
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="bottom"
-                                app:srcCompat="@drawable/ic_end_point"/>
+                                app:srcCompat="@drawable/ic_end_point" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -73,58 +72,55 @@
                             android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/depart_city_layout"
+                                android:id="@+id/departCityLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/blue_clickable_background"
                                 android:clickable="true"
                                 android:gravity="center_vertical"
                                 android:orientation="vertical"
-                                android:padding="15dp"
-                                >
+                                android:padding="15dp">
 
                                 <TextView
-                                    android:id="@+id/depart_city"
+                                    android:id="@+id/departCityLabel"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Москва"
-                                    android:textAppearance="@style/CityNameText"/>
+                                    android:textAppearance="@style/CityNameText" />
 
                                 <TextView
-                                    android:id="@+id/depart_airport"
+                                    android:id="@+id/departAirportName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Все аэропорты"
-                                    android:textAppearance="@style/AirportName"/>
+                                    android:textAppearance="@style/AirportName" />
                             </LinearLayout>
 
-                            <View style="@style/WhiteDivider"/>
+                            <View style="@style/WhiteDivider" />
 
                             <LinearLayout
-                                android:id="@+id/arrive_city_layout"
+                                android:id="@+id/arriveCityLayout"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/blue_clickable_background"
                                 android:clickable="true"
                                 android:gravity="center_vertical"
                                 android:orientation="vertical"
-                                android:padding="15dp"
-                                >
+                                android:padding="15dp">
 
                                 <TextView
-                                    android:id="@+id/arrive_city"
+                                    android:id="@+id/arriveCityLabel"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Белгород"
-                                    android:textAppearance="@style/CityNameText"/>
+                                    android:textAppearance="@style/CityNameText" />
 
                                 <TextView
-                                    android:id="@+id/arrive_airport"
+                                    android:id="@+id/arriveAirportName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Все аэропорты"
-                                    android:textAppearance="@style/AirportName"
-                                    />
+                                    android:textAppearance="@style/AirportName" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -132,7 +128,7 @@
                     </LinearLayout>
 
                     <ImageView
-                        android:id="@+id/swap_cities_button"
+                        android:id="@+id/swapCitiesButton"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_gravity="end|center_vertical"
@@ -140,11 +136,11 @@
                         android:background="@drawable/swap_cities_background"
                         android:clickable="true"
                         android:scaleType="center"
-                        app:srcCompat="@drawable/ic_swap_cities"/>
+                        app:srcCompat="@drawable/ic_swap_cities" />
 
                 </FrameLayout>
 
-                <View style="@style/WhiteDivider"/>
+                <View style="@style/WhiteDivider" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -153,7 +149,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/depart_date_layout"
+                        android:id="@+id/departDateLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="70dp"
                         android:layout_marginStart="60dp"
@@ -161,26 +157,26 @@
                         android:clickable="true"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:paddingEnd="5dp"
-                        android:paddingStart="5dp">
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
 
                         <TextView
                             android:id="@+id/depart_date_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/depart_direction"
-                            android:textAppearance="@style/FlightDateLabel"/>
+                            android:textAppearance="@style/FlightDateLabel" />
 
                         <TextView
-                            android:id="@+id/depart_date"
+                            android:id="@+id/departDateView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="18 авг, пт"
-                            android:textAppearance="@style/FlightDateText"/>
+                            android:textAppearance="@style/FlightDateText" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/return_date_layout"
+                        android:id="@+id/returnDateLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="70dp"
                         android:layout_marginStart="16dp"
@@ -188,29 +184,27 @@
                         android:clickable="true"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:paddingEnd="5dp"
                         android:paddingStart="5dp"
-                        android:visibility="gone"
-                        >
+                        android:paddingEnd="5dp"
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/return_date_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/arrive_direction"
-                            android:textAppearance="@style/FlightDateLabel"/>
+                            android:textAppearance="@style/FlightDateLabel" />
 
                         <TextView
-                            android:id="@+id/return_date"
+                            android:id="@+id/returnDateView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1 сентября, вс"
-                            android:textAppearance="@style/FlightDateText"
-                            />
+                            android:textAppearance="@style/FlightDateText" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/return_date_button"
+                        android:id="@+id/returnDateButton"
                         android:layout_width="wrap_content"
                         android:layout_height="70dp"
                         android:layout_marginStart="16dp"
@@ -218,11 +212,11 @@
                         android:clickable="true"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
-                        android:paddingEnd="5dp"
-                        android:paddingStart="5dp">
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
 
                         <TextView
-                            android:id="@+id/return_date_button_label"
+                            android:id="@+id/returnDateButtonLabel"
                             fontPath="@string/fontOpenSansRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -231,12 +225,12 @@
                             android:gravity="center"
                             android:padding="16dp"
                             android:text="@string/arrive_direction"
-                            android:textColor="@color/text_white"/>
+                            android:textColor="@color/text_white" />
 
                     </LinearLayout>
 
                     <ImageView
-                        android:id="@+id/clear_return_date_button"
+                        android:id="@+id/cleaReturnDateButton"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="16dp"
@@ -244,10 +238,10 @@
                         android:clickable="true"
                         android:scaleType="center"
                         android:visibility="gone"
-                        app:srcCompat="@drawable/ic_clear_return_date"/>
+                        app:srcCompat="@drawable/ic_clear_return_date" />
                 </LinearLayout>
 
-                <View style="@style/WhiteDivider"/>
+                <View style="@style/WhiteDivider" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -257,9 +251,9 @@
                     android:orientation="horizontal">
 
                     <com.kode.utair.presentation.ui.views.PassengerCountPicker
-                        android:id="@+id/passenger_count_picker"
+                        android:id="@+id/passengerCountPicker"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -268,7 +262,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <TextView
-        android:id="@+id/find_flights_button"
+        android:id="@+id/findFlightsButton"
         fontPath="@string/fontOpenSansSemibold"
         android:layout_width="match_parent"
         android:layout_height="@dimen/find_flights_button_height"
@@ -278,5 +272,5 @@
         android:gravity="center"
         android:text="@string/find_flights"
         android:textAllCaps="true"
-        android:textColor="@color/text_white"/>
+        android:textColor="@color/text_white" />
 </LinearLayout>

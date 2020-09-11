@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/cities_forecasts_pager"
+            android:id="@+id/citiesForecastPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
