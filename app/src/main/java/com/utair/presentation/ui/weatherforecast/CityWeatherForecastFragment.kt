@@ -8,14 +8,15 @@ import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.utair.R
-import com.utair.UTairApplication.Companion.component
+import com.utair.di.presenters.weatherforecast.cityforecast.CityForecastPresenterModule
+import com.utair.di.presenters.weatherforecast.cityforecast.DaggerCityForecastComponent
 import com.utair.domain.global.models.WeatherForecastEntity.DailyForecast
-import com.utair.presentation.mvp.presenters.CityWeatherForecastPresenter
-import com.utair.presentation.mvp.views.CityWeatherForecastView
-import com.utair.presentation.ui.global.base.MvpAppCompatFragment
+import com.utair.presentation.mvp.weatherforecast.CityWeatherForecastPresenter
+import com.utair.presentation.mvp.weatherforecast.CityWeatherForecastView
+import com.utair.presentation.ui.global.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_city_weather_forecast.*
 
-class CityWeatherForecastFragment : MvpAppCompatFragment(), CityWeatherForecastView {
+class CityWeatherForecastFragment : BaseFragment(), CityWeatherForecastView {
 
     @InjectPresenter
     lateinit var weatherPresenter: CityWeatherForecastPresenter
@@ -23,8 +24,11 @@ class CityWeatherForecastFragment : MvpAppCompatFragment(), CityWeatherForecastV
     @ProvidePresenter
     fun providePresenter(): CityWeatherForecastPresenter {
         val cityName = arguments!!.getString(CITY_NAME_ARG)!!
-        val interactor = component().getWeatherForecastInteractor()
-        return CityWeatherForecastPresenter(interactor, cityName)
+        return DaggerCityForecastComponent.builder()
+                .applicationComponent(appComponent)
+                .cityForecastPresenterModule(CityForecastPresenterModule(cityName))
+                .build()
+                .getCityWeatherForecastPresenter()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

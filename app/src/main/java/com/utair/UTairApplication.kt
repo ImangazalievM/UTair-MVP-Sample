@@ -7,9 +7,9 @@ import com.utair.data.global.network.UTairApiService
 import com.utair.data.global.network.WeatherApiService
 import com.utair.di.ApplicationComponent
 import com.utair.di.DaggerApplicationComponent
-import com.utair.di.modules.AndroidModule
 import com.utair.di.modules.ApplicationModule
 import com.utair.di.modules.DataModule
+import com.utair.di.modules.NavigationModule
 import io.github.inflationx.calligraphy3.CalligraphyConfig
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor
 import io.github.inflationx.viewpump.ViewPump
@@ -33,8 +33,8 @@ class UTairApplication : Application() {
     fun prepareComponent(): ApplicationComponent {
         return DaggerApplicationComponent.builder()
                 .dataModule(DataModule(UTairApiService.BASE_URL, WeatherApiService.BASE_URL))
-                .androidModule(AndroidModule(applicationContext))
-                .applicationModule(ApplicationModule())
+                .applicationModule(ApplicationModule(applicationContext))
+                .navigationModule(NavigationModule())
                 .build()
     }
 

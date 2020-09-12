@@ -1,17 +1,18 @@
-package com.utair.presentation.mvp.presenters
+package com.utair.presentation.mvp.weatherforecast
 
 import com.arellomobile.mvp.InjectViewState
+import com.utair.di.presenters.weatherforecast.cityforecast.CityName
 import com.utair.domain.global.exceptions.NoNetworkException
 import com.utair.domain.weatherforecast.WeatherForecastInteractor
-import com.utair.presentation.mvp.views.CityWeatherForecastView
 import com.utair.presentation.ui.global.base.mvp.BasePresenter
 import com.utair.presentation.utils.DebugUtils
 import io.reactivex.rxkotlin.subscribeBy
+import javax.inject.Inject
 
 @InjectViewState
-class CityWeatherForecastPresenter(
+class CityWeatherForecastPresenter @Inject constructor(
         private val weatherForecastInteractor: WeatherForecastInteractor,
-        private val cityName: String
+        @CityName private val cityName: String
 ) : BasePresenter<CityWeatherForecastView>() {
 
     override fun onFirstViewAttach() {

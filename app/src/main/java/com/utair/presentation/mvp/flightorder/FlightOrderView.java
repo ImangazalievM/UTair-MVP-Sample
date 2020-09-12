@@ -1,4 +1,4 @@
-package com.utair.presentation.mvp.views;
+package com.utair.presentation.mvp.flightorder;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
@@ -10,7 +10,7 @@ import org.joda.time.DateTime;
 import java.util.List;
 
 @StateStrategyType(AddToEndSingleStrategy.class)
-public interface MainView extends MvpView {
+public interface FlightOrderView extends MvpView {
 
     void showEmptyDepartCity();
     void showDepartCity(String arriveCity);
@@ -38,7 +38,5 @@ public interface MainView extends MvpView {
 
     void showNoNetworkMessage();
     void showValidationErrorMessage(String errorMessage);
-
-    void openWeatherScreen();
 
 }

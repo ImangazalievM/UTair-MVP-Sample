@@ -1,27 +1,29 @@
-package com.utair.presentation.mvp.presenters
+package com.utair.presentation.mvp.flightorder
 
 import com.arellomobile.mvp.InjectViewState
 import com.utair.domain.flightorder.MainInteractor
 import com.utair.domain.global.exceptions.NoNetworkException
 import com.utair.domain.global.exceptions.WeatherSettingsValidationError
 import com.utair.domain.global.models.WeatherSettings
-import com.utair.presentation.mvp.views.MainView
 import com.utair.presentation.ui.global.base.mvp.BasePresenter
+import com.utair.presentation.ui.global.navigation.WeatherForecastScreen
 import com.utair.presentation.utils.DebugUtils
 import io.reactivex.rxkotlin.subscribeBy
+import me.aartikov.alligator.Navigator
 import org.joda.time.DateTime
 import javax.inject.Inject
 
 @InjectViewState
-class MainPresenter @Inject constructor(
-        private val interactor: MainInteractor
-) : BasePresenter<MainView>() {
+class FlightOrderPresenter @Inject constructor(
+        private val interactor: MainInteractor,
+        private val navigator: Navigator
+) : BasePresenter<FlightOrderView>() {
 
     private lateinit var weatherSettings: WeatherSettings
     private var departureDate: DateTime = DateTime()
     private var returnDate: DateTime? = DateTime().plusWeeks(1)
     private lateinit var cities: List<String>
-    
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
@@ -100,7 +102,11 @@ class MainPresenter @Inject constructor(
         interactor.saveWeatherSettings(weatherSettings)
         try {
             interactor.validateData(weatherSettings)
-            viewState.openWeatherScreen()
+            val screen = WeatherForecastScreen(
+                    arriveCity = weatherSettings.arriveCity!!,
+                    departCity = weatherSettings.departCity!!
+            )
+            navigator.goForward(screen)
         } catch (error: Exception) {
             handleValidationError(error)
         }

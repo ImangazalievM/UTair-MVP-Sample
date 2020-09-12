@@ -7,10 +7,12 @@ import androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.utair.R
-import com.utair.UTairApplication.Companion.component
-import com.utair.presentation.mvp.presenters.WeatherForecastPresenter
-import com.utair.presentation.mvp.views.WeatherForecastView
+import com.utair.di.presenters.weatherforecast.DaggerWeatherForecastComponent
+import com.utair.di.presenters.weatherforecast.WeatherForecastPresenterModule
+import com.utair.presentation.mvp.weatherforecast.WeatherForecastPresenter
+import com.utair.presentation.mvp.weatherforecast.WeatherForecastView
 import com.utair.presentation.ui.global.base.BaseMvpActivity
+import com.utair.presentation.ui.global.navigation.WeatherForecastScreen
 import kotlinx.android.synthetic.main.activity_weather_forecast.*
 import kotlinx.android.synthetic.main.cities_forecasts_tabs.*
 import kotlinx.android.synthetic.main.toolbar_white.*
@@ -22,7 +24,15 @@ class WeatherForecastActivity : BaseMvpActivity(), WeatherForecastView {
 
     @ProvidePresenter
     fun providePresenter(): WeatherForecastPresenter {
-        return component().getWeatherForecastPresenter()
+        val screen = screenResolver.getScreen<WeatherForecastScreen>(this)
+        return DaggerWeatherForecastComponent.builder()
+                .applicationComponent(appComponent)
+                .weatherForecastPresenterModule(WeatherForecastPresenterModule(
+                        departCity = screen.departCity,
+                        arriveCity = screen.arriveCity
+                ))
+                .build()
+                .getWeatherForecastPresenter()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,10 +76,9 @@ class WeatherForecastActivity : BaseMvpActivity(), WeatherForecastView {
     }
 
     companion object {
+
         const val DEPART_CITY_TAB_POSITION = 0
         const val ARRIVE_CITY_TAB_POSITION = 1
-        fun buildIntent(activity: Activity?): Intent {
-            return Intent(activity, WeatherForecastActivity::class.java)
-        }
+
     }
 }

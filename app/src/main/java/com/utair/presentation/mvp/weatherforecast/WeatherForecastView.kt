@@ -1,4 +1,4 @@
-package com.utair.presentation.mvp.views
+package com.utair.presentation.mvp.weatherforecast
 
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy

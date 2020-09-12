@@ -1,4 +1,4 @@
-package com.utair.di.qualifiers
+package com.utair.di.presenters.weatherforecast
 
 import java.lang.annotation.Documented
 import java.lang.annotation.Retention
@@ -8,4 +8,4 @@ import javax.inject.Qualifier
 @Documented
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
-annotation class UiScheduler
+annotation class ArriveCity

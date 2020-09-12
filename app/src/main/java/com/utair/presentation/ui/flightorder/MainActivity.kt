@@ -11,26 +11,28 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.snackbar.Snackbar
 import com.utair.R
-import com.utair.UTairApplication
-import com.utair.presentation.mvp.presenters.MainPresenter
-import com.utair.presentation.mvp.views.MainView
-import com.utair.presentation.ui.weatherforecast.WeatherForecastActivity
+import com.utair.di.presenters.orderflight.DaggerFlightOrderComponent
+import com.utair.presentation.mvp.flightorder.FlightOrderPresenter
+import com.utair.presentation.mvp.flightorder.FlightOrderView
 import com.utair.presentation.ui.global.base.BaseMvpActivity
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 
-class MainActivity : BaseMvpActivity(), MainView {
+class MainActivity : BaseMvpActivity(), FlightOrderView {
 
     private val dateFormatter = SimpleDateFormat("d MMM, E")
 
     @InjectPresenter
-    lateinit var mainPresenter: MainPresenter
+    lateinit var flightOrderPresenter: FlightOrderPresenter
 
     @ProvidePresenter
-    fun providePresenter(): MainPresenter {
-        return UTairApplication.component().getMainPresenter()
+    fun providePresenter(): FlightOrderPresenter {
+        return DaggerFlightOrderComponent.builder()
+                .applicationComponent(appComponent)
+                .build()
+                .getFlightOrderPresenter()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,28 +43,28 @@ class MainActivity : BaseMvpActivity(), MainView {
         returnDateButtonLabel.setCompoundDrawablesRelativeWithIntrinsicBounds(plusIcon, null, null, null)
 
         departCityLayout.setOnClickListener {
-            mainPresenter.onDepartCityClicked()
+            flightOrderPresenter.onDepartCityClicked()
         }
         arriveCityLayout.setOnClickListener {
-            mainPresenter.onArriveCityClicked()
+            flightOrderPresenter.onArriveCityClicked()
         }
         swapCitiesButton.setOnClickListener {
-            mainPresenter.onSwapCitiesButtonClicked()
+            flightOrderPresenter.onSwapCitiesButtonClicked()
         }
         departDateLayout.setOnClickListener {
-            mainPresenter.onDepartDateClicked()
+            flightOrderPresenter.onDepartDateClicked()
         }
         returnDateLayout.setOnClickListener {
-            mainPresenter.onReturnDateClicked()
+            flightOrderPresenter.onReturnDateClicked()
         }
         returnDateButton.setOnClickListener {
-            mainPresenter.onSetReturnDateButtonClicked()
+            flightOrderPresenter.onSetReturnDateButtonClicked()
         }
         cleaReturnDateButton.setOnClickListener {
-            mainPresenter.onClearReturnDateClicked()
+            flightOrderPresenter.onClearReturnDateClicked()
         }
         findFlightsButton.setOnClickListener {
-            mainPresenter.onFindFlightsButtonClicked()
+            flightOrderPresenter.onFindFlightsButtonClicked()
         }
     }
 
@@ -83,7 +85,7 @@ class MainActivity : BaseMvpActivity(), MainView {
 
     override fun showDepartCitySelector(cities: List<String>) {
         showCitySelector(cities) {
-            mainPresenter.onDepartCitySelected(it)
+            flightOrderPresenter.onDepartCitySelected(it)
         }
     }
 
@@ -99,7 +101,7 @@ class MainActivity : BaseMvpActivity(), MainView {
 
     override fun showArriveCitySelector(cities: List<String>) {
         showCitySelector(cities) {
-            mainPresenter.onArriveCitySelected(it)
+            flightOrderPresenter.onArriveCitySelected(it)
         }
     }
 
@@ -117,7 +119,7 @@ class MainActivity : BaseMvpActivity(), MainView {
 
     override fun showDepartDatePicker(departDate: DateTime) {
         showDatePicker(departDate) {
-            mainPresenter.onDepartDateSelected(it)
+            flightOrderPresenter.onDepartDateSelected(it)
         }
     }
 
@@ -130,7 +132,7 @@ class MainActivity : BaseMvpActivity(), MainView {
 
     override fun showReturnDatePicker(returnDate: DateTime) {
         showDatePicker(returnDate) {
-            mainPresenter.onReturnDateSelected(it)
+            flightOrderPresenter.onReturnDateSelected(it)
         }
     }
 
@@ -157,17 +159,12 @@ class MainActivity : BaseMvpActivity(), MainView {
         snackbar.show()
     }
 
-    override fun openWeatherScreen() {
-        startActivity(WeatherForecastActivity.buildIntent(this))
-    }
-
     private fun showDatePicker(date: DateTime, onDateSelected: (DateTime) -> Unit) {
-        val callback = DatePickerDialog.OnDateSetListener {
-            _: DatePickerDialog, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-            onDateSelected(DateTime(year, monthOfYear, dayOfMonth, 0, 0))
-        }
         val datePickerDialog = DatePickerDialog.newInstance(
-                callback, date.year,
+                { _: DatePickerDialog, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                    onDateSelected(DateTime(year, monthOfYear, dayOfMonth, 0, 0))
+                },
+                date.year,
                 date.monthOfYear().get(),
                 date.dayOfWeek().get()
         )
