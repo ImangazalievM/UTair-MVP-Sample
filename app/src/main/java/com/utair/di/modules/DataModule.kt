@@ -2,14 +2,14 @@ package com.utair.di.modules
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.utair.data.network.*
-import com.utair.data.network.responses.WeatherForecastResponse
-import com.utair.data.repository.CityRepository
-import com.utair.data.repository.WeatherRepository
-import com.utair.data.repository.WeatherSettingsRepository
-import com.utair.domain.repository.ICityRepository
-import com.utair.domain.repository.IWeatherRepository
-import com.utair.domain.repository.IWeatherSettingsRepository
+import com.utair.data.global.network.*
+import com.utair.data.global.network.responses.WeatherForecastResponse
+import com.utair.data.cities.CityRepository
+import com.utair.data.weather.WeatherRepository
+import com.utair.data.global.WeatherSettingsRepository
+import com.utair.domain.global.repositories.ICityRepository
+import com.utair.domain.global.IWeatherRepository
+import com.utair.domain.global.repositories.IWeatherSettingsRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -46,7 +46,7 @@ class DataModule(
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(networkChecker: NetworkChecker?): OkHttpClient {
+    fun provideOkHttpClient(networkChecker: NetworkChecker): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(NetworkCheckInterceptor(networkChecker))
                 .addInterceptor(WeatherApiInterceptor())

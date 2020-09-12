@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/day_label"
+        android:id="@+id/dayLabel"
         fontPath="@string/fontOpenSansLight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         android:textSize="18sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/hourly_forecast_list"
+        android:id="@+id/hourlyForecastList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"

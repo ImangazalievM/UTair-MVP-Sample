@@ -2,8 +2,8 @@ package com.utair.presentation.mvp.presenters
 
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.utair.domain.interactors.WeatherForecastInteractor
-import com.utair.domain.models.WeatherSettings
+import com.utair.domain.weatherforecast.WeatherForecastInteractor
+import com.utair.domain.global.models.WeatherSettings
 import com.utair.presentation.mvp.views.WeatherForecastView
 import com.utair.presentation.utils.DebugUtils
 import javax.inject.Inject

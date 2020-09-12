@@ -3,8 +3,8 @@ package com.utair
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-import com.utair.data.network.UTairApiService
-import com.utair.data.network.WeatherApiService
+import com.utair.data.global.network.UTairApiService
+import com.utair.data.global.network.WeatherApiService
 import com.utair.di.ApplicationComponent
 import com.utair.di.DaggerApplicationComponent
 import com.utair.di.modules.AndroidModule

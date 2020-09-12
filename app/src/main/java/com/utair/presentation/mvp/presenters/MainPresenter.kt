@@ -3,10 +3,10 @@ package com.utair.presentation.mvp.presenters
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
-import com.utair.domain.exceptions.NoNetworkException
-import com.utair.domain.exceptions.WeatherSettingsValidationError
-import com.utair.domain.interactors.MainInteractor
-import com.utair.domain.models.WeatherSettings
+import com.utair.domain.global.exceptions.NoNetworkException
+import com.utair.domain.global.exceptions.WeatherSettingsValidationError
+import com.utair.domain.flightorder.MainInteractor
+import com.utair.domain.global.models.WeatherSettings
 import com.utair.presentation.mvp.views.MainView
 import com.utair.presentation.utils.DebugUtils
 import org.joda.time.DateTime

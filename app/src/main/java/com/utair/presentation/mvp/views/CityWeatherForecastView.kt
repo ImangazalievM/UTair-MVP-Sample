@@ -3,12 +3,12 @@ package com.utair.presentation.mvp.views
 import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.utair.domain.models.WeatherForecastEntity.DailyForecast
+import com.utair.domain.global.models.WeatherForecastEntity.DailyForecast
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface CityWeatherForecastView : MvpView {
 
-    fun showForecast(dailyForecasts: List<DailyForecast?>?)
+    fun showForecast(dailyForecasts: List<DailyForecast>)
 
     fun showNoNetworkMessage()
 

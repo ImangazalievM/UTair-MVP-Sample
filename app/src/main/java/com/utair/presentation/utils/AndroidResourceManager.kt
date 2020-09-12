@@ -1,7 +1,7 @@
 package com.utair.presentation.utils
 
 import android.content.Context
-import com.utair.domain.commons.ResourceManager
+import com.utair.domain.global.ResourceManager
 import javax.inject.Inject
 
 class AndroidResourceManager @Inject constructor(

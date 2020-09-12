@@ -1,7 +1,7 @@
 package com.utair.di.modules
 
 import android.content.Context
-import com.utair.domain.commons.ResourceManager
+import com.utair.domain.global.ResourceManager
 import com.utair.presentation.utils.AndroidResourceManager
 import dagger.Module
 import dagger.Provides
