@@ -20,24 +20,21 @@ class FlightOrderDataValidator @Inject constructor(
     }
 
     private fun validateFlightOrderData(flightOrderData: FlightOrderData): List<FlightOrderDataValidationError> {
-        val validateErrors: MutableList<FlightOrderDataValidationError> = ArrayList()
-        val departCityValidateError = validateDepartCity(flightOrderData.departCity)
-        if (departCityValidateError != null) validateErrors.add(departCityValidateError)
-        val arriveCityValidateError = validateArriveCity(flightOrderData.arriveCity)
-        if (arriveCityValidateError != null) validateErrors.add(arriveCityValidateError)
+        val validateErrors = mutableListOf<FlightOrderDataValidationError>()
+
+        if (flightOrderData.departCity == null) {
+            validateErrors.add(validationError(R.string.depart_city_is_empty_message))
+        }
+
+        if (flightOrderData.arriveCity == null) {
+            validateErrors.add(validationError(R.string.arrive_city_is_empty_message))
+        }
+        
         return validateErrors
     }
 
-    private fun validateDepartCity(departCity: String?): FlightOrderDataValidationError? {
-        return if (departCity == null) {
-            FlightOrderDataValidationError(resourceManager.getString(R.string.depart_city_is_empty_message))
-        } else null
-    }
-
-    private fun validateArriveCity(arriveCity: String?): FlightOrderDataValidationError? {
-        return if (arriveCity == null) {
-            FlightOrderDataValidationError(resourceManager.getString(R.string.arrive_city_is_empty_message))
-        } else null
+    private fun validationError(stringResId: Int): FlightOrderDataValidationError {
+        return FlightOrderDataValidationError(resourceManager.getString(stringResId))
     }
 
 }
