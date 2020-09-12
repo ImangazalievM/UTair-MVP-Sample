@@ -8,14 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.utair.R
-import com.utair.domain.global.models.WeatherForecastEntity
-import com.utair.domain.global.models.WeatherForecastEntity.WeatherCondition
+import com.utair.domain.global.models.WeatherForecast
+import com.utair.domain.global.models.WeatherForecast.WeatherCondition
 import com.utair.presentation.ui.weatherforecast.HourlyForecastAdapter.ProductViewHolder
 import java.text.SimpleDateFormat
 
 class HourlyForecastAdapter(
         context: Context,
-        private val hourlyForecasts: List<WeatherForecastEntity.HourlyForecast>
+        private val hourlyForecasts: List<WeatherForecast.HourlyForecast>
 ) : RecyclerView.Adapter<ProductViewHolder>() {
 
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)

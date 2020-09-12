@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/color_blue"
     android:orientation="vertical">
 
@@ -77,6 +78,7 @@
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/blue_clickable_background"
                                 android:clickable="true"
+                                android:focusable="true"
                                 android:gravity="center_vertical"
                                 android:orientation="vertical"
                                 android:padding="15dp">
@@ -85,14 +87,14 @@
                                     android:id="@+id/departCityLabel"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Москва"
+                                    tools:text="Moscow"
                                     android:textAppearance="@style/CityNameText" />
 
                                 <TextView
                                     android:id="@+id/departAirportName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Все аэропорты"
+                                    android:text="@string/all_airports"
                                     android:textAppearance="@style/AirportName" />
                             </LinearLayout>
 
@@ -112,14 +114,14 @@
                                     android:id="@+id/arriveCityLabel"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Белгород"
+                                    tools:text="Belgorod"
                                     android:textAppearance="@style/CityNameText" />
 
                                 <TextView
                                     android:id="@+id/arriveAirportName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Все аэропорты"
+                                    android:text="@string/all_airports"
                                     android:textAppearance="@style/AirportName" />
                             </LinearLayout>
 
@@ -164,14 +166,14 @@
                             android:id="@+id/depart_date_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/depart_direction"
+                            android:text="@string/depart_date_label"
                             android:textAppearance="@style/FlightDateLabel" />
 
                         <TextView
                             android:id="@+id/departDateView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="18 авг, пт"
+                            tools:text="18 aug, fr"
                             android:textAppearance="@style/FlightDateText" />
                     </LinearLayout>
 
@@ -182,6 +184,7 @@
                         android:layout_marginStart="16dp"
                         android:background="@drawable/blue_clickable_background"
                         android:clickable="true"
+                        android:focusable="true"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:paddingStart="5dp"
@@ -192,14 +195,14 @@
                             android:id="@+id/return_date_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/arrive_direction"
+                            android:text="@string/arrive_date_label"
                             android:textAppearance="@style/FlightDateLabel" />
 
                         <TextView
                             android:id="@+id/returnDateView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1 сентября, вс"
+                            tools:text="1 sept, th"
                             android:textAppearance="@style/FlightDateText" />
                     </LinearLayout>
 

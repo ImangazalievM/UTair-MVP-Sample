@@ -1,23 +1,25 @@
 <resources>
     <string name="app_name">UTair</string>
-    <string name="help">Справка</string>
-    <string name="depart_direction">Туда</string>
-    <string name="arrive_direction">Обратно</string>
-    <string name="find_flights">Найти рейсы</string>
-    <string name="where_from">Откуда</string>
-    <string name="where">Куда</string>
+    <string name="help">Help</string>
+    <string name="depart_date_label">Depart on</string>
+    <string name="arrive_date_label">Return on</string>
+    <string name="depart_direction">Departure</string>
+    <string name="arrive_direction">Arrive</string>
+    <string name="find_flights">Find flights</string>
+    <string name="where_from">From</string>
+    <string name="where">To</string>
+    <string name="all_airports">All airports</string>
 
-    <string name="fontOpenSansLight">fonts/OpenSans-Light.ttf</string>
-    <string name="fontOpenSansRegular">fonts/OpenSans-Regular.ttf</string>
-    <string name="fontOpenSansSemibold">fonts/OpenSans-Semibold.ttf</string>
-    <string name="fontOpenSansBold">fonts/OpenSans-Bold.ttf</string>
-    <string name="fontRobotoMedium">fonts/Roboto-Medium.ttf</string>
-    <string name="city_selection">Выбор города</string>
-    <string name="input_your_city">Введите название вашего города</string>
-    <string name="no_network_message">Проверьте подключение к интернету</string>
-    <string name="max_passenger_count_message">Пассажиров должно быть не более %d человек</string>
-    <string name="babies_less_adults_message">Младенцев не должно быть больше, чем взрослых</string>
-    <string name="depart_city_is_empty_message">Введите пункт отправления</string>
-    <string name="arrive_city_is_empty_message">Введите пункт назначения</string>
+    <string name="adult_passenger">Adult</string>
+    <string name="kid_passenger">2–12 years</string>
+    <string name="baby_passenger">0–2 years</string>
+
+    <string name="select_city">Select_city</string>
+    <string name="max_passenger_count_message">Passengers must be no more than %d people</string>
+    <string name="babies_less_adults_message">There shouldn\'t be more babies than adults</string>
+    <string name="depart_city_is_empty_message">Select depart city</string>
+    <string name="arrive_city_is_empty_message">Select arrive city</string>
+
+    <string name="no_network_message">Check your internet connection</string>
 
 </resources>

@@ -1,5 +1,5 @@
 package com.utair.domain.global.exceptions
 
-class WeatherSettingsValidationError(
+class FlightOrderDataValidationError(
         val errorMessage: String
 ) : Exception()

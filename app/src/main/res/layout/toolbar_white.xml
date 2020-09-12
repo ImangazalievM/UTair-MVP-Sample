@@ -1,6 +1,6 @@
-<androidx.appcompat.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
@@ -21,7 +21,7 @@
             android:ellipsize="end"
             android:gravity="end"
             android:maxLines="1"
-            android:text="Москва"
+            tools:text="Moscow"
             android:textColor="#ff1a2027"
             android:textSize="18sp"/>
 
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="Белгород"
+            tools:text="St. Petersburg"
             android:textColor="#ff1a2027"
             android:textSize="18sp"/>
 

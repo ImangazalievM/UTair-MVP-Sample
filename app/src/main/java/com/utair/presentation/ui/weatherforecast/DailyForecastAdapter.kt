@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.utair.R
-import com.utair.domain.global.models.WeatherForecastEntity.DailyForecast
+import com.utair.domain.global.models.WeatherForecast.DailyForecast
 import com.utair.presentation.ui.weatherforecast.DailyForecastAdapter.DayForecastViewHolder
 import kotlinx.android.synthetic.main.item_daily_forecast.view.*
 import java.text.SimpleDateFormat

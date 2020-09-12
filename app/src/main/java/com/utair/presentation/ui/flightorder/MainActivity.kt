@@ -173,7 +173,7 @@ class MainActivity : BaseMvpActivity(), FlightOrderView {
 
     private fun showCitySelector(cities: List<String>, onItemSelected: (String) -> Unit) {
         MaterialDialog(this).show {
-            title(R.string.city_selection)
+            title(R.string.select_city)
             listItems(items = cities) { _, index, _ ->
                 onItemSelected(cities[index])
             }

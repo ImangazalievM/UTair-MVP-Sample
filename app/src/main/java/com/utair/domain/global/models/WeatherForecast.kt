@@ -3,7 +3,10 @@ package com.utair.domain.global.models
 import org.joda.time.DateTime
 import java.util.*
 
-class WeatherForecastEntity(val cityName: String, val dailyForecasts: List<DailyForecast>) {
+class WeatherForecast(
+        val cityName: String,
+        val dailyForecasts: List<DailyForecast>
+) {
 
     class DailyForecast(val date: DateTime) {
 

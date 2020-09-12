@@ -1,33 +1,35 @@
 package com.utair.data.global.network.mappers
 
 import com.utair.data.global.network.responses.WeatherForecastResponse
-import com.utair.domain.global.models.WeatherForecastEntity
-import com.utair.domain.global.models.WeatherForecastEntity.DailyForecast
-import com.utair.domain.global.models.WeatherForecastEntity.WeatherCondition
+import com.utair.domain.global.models.WeatherForecast
+import com.utair.domain.global.models.WeatherForecast.DailyForecast
+import com.utair.domain.global.models.WeatherForecast.WeatherCondition
 import org.joda.time.DateTime
 import java.util.*
 import javax.inject.Inject
 
 class WeatherForecastResponseMapper @Inject constructor() {
 
-     fun map(response: WeatherForecastResponse): WeatherForecastEntity {
-        val hourlyForecastEntities: MutableList<WeatherForecastEntity.HourlyForecast> = ArrayList()
+     fun map(response: WeatherForecastResponse): WeatherForecast {
+        val hourlyForecastEntities: MutableList<WeatherForecast.HourlyForecast> = ArrayList()
         val hourlyForecastResponses = response.hourlyForecasts
         for (hourlyForecastResponse in hourlyForecastResponses) {
-            //переводим из unix timestamp в дату, умножаем на тысячу для перевода секунд в миллисекунды
+            // convert from unix timestamp to date, multiply
+            // by thousand to convert seconds to milliseconds
             val dateTime = DateTime(hourlyForecastResponse.timestamp * 1000)
             val condition = getConditionById(hourlyForecastResponse.weatherId)
             val temperature = hourlyForecastResponse.temperature
             val speed = hourlyForecastResponse.speed
-            hourlyForecastEntities.add(WeatherForecastEntity.HourlyForecast(dateTime, condition, temperature, speed))
+            hourlyForecastEntities.add(WeatherForecast.HourlyForecast(dateTime, condition, temperature, speed))
         }
         val dailyForecastEntities = splitForecastsByDays(hourlyForecastEntities)
-        return WeatherForecastEntity(response.cityName, dailyForecastEntities)
+        return WeatherForecast(response.cityName, dailyForecastEntities)
     }
 
     /**
-     * Возвращает погодные условия по идентификатору
-     * Подробнее об иденетификаторах погодных условий можно узнать здесь https://openweathermap.org/weather-conditions
+     * Returns weather conditions by identifier
+     * More information about weather IDs can be
+     * found here https://openweathermap.org/weather-conditions
      */
     private fun getConditionById(weatherId: Int): WeatherCondition {
         if (weatherId >= 200 && weatherId <= 232) {
@@ -57,11 +59,11 @@ class WeatherForecastResponseMapper @Inject constructor() {
     }
 
     /**
-     * Разбиват почасовой прогноз по дням
+     * Split hourly forecast by day
      */
-    private fun splitForecastsByDays(hourlyForecastEntities: List<WeatherForecastEntity.HourlyForecast>): List<DailyForecast> {
-        //сортируем почасовой прогноз по возрастанию времени
-        Collections.sort(hourlyForecastEntities) { forecast1: WeatherForecastEntity.HourlyForecast, forecast2: WeatherForecastEntity.HourlyForecast -> forecast1.dateTime.compareTo(forecast2.dateTime) }
+    private fun splitForecastsByDays(hourlyForecastEntities: List<WeatherForecast.HourlyForecast>): List<DailyForecast> {
+        //sort the hourly forecast by ascending time
+        Collections.sort(hourlyForecastEntities) { forecast1: WeatherForecast.HourlyForecast, forecast2: WeatherForecast.HourlyForecast -> forecast1.dateTime.compareTo(forecast2.dateTime) }
         val forecastsByDay: MutableMap<String, DailyForecast> = HashMap()
         for (hourlyForecast in hourlyForecastEntities) {
             val forecastDate = hourlyForecast.dateTime
@@ -75,7 +77,7 @@ class WeatherForecastResponseMapper @Inject constructor() {
         }
         val dailyForecastEntities: List<DailyForecast> = ArrayList(forecastsByDay.values)
 
-        //сортируем прогноз по дате
+        //sort the forecast by date
         Collections.sort(dailyForecastEntities) { forecast1: DailyForecast, forecast2: DailyForecast -> forecast1.date.compareTo(forecast2.date) }
         return dailyForecastEntities
     }

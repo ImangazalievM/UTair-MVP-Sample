@@ -2,25 +2,25 @@ package com.utair.data.global
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.utair.domain.global.models.WeatherSettings
+import com.utair.domain.global.models.FlightOrderData
 import javax.inject.Inject
 
 class UTairPreferences @Inject constructor(context: Context) {
 
     private val appPreferences: SharedPreferences
 
-    fun getWeatherSettings(): WeatherSettings {
+    fun getFlightOrderData(): FlightOrderData {
         val departCity = appPreferences.getString(DEPART_CITY_KEY, "")!!
         val arriveCity = appPreferences.getString(ARRIVE_CITY_KEY, "")!!
-        return WeatherSettings(departCity, arriveCity)
+        return FlightOrderData(departCity, arriveCity)
     }
 
-    fun saveWeatherSettings(weatherSettings: WeatherSettings) {
-        if (weatherSettings.departCity != null) {
-            appPreferences.edit().putString(DEPART_CITY_KEY, weatherSettings.departCity).apply()
+    fun saveOrderData(flightOrderData: FlightOrderData) {
+        if (flightOrderData.departCity != null) {
+            appPreferences.edit().putString(DEPART_CITY_KEY, flightOrderData.departCity).apply()
         }
-        if (weatherSettings.arriveCity != null) {
-            appPreferences.edit().putString(ARRIVE_CITY_KEY, weatherSettings.arriveCity).apply()
+        if (flightOrderData.arriveCity != null) {
+            appPreferences.edit().putString(ARRIVE_CITY_KEY, flightOrderData.arriveCity).apply()
         }
     }
 

@@ -10,7 +10,7 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.utair.R
 import com.utair.di.presenters.weatherforecast.cityforecast.CityForecastPresenterModule
 import com.utair.di.presenters.weatherforecast.cityforecast.DaggerCityForecastComponent
-import com.utair.domain.global.models.WeatherForecastEntity.DailyForecast
+import com.utair.domain.global.models.WeatherForecast.DailyForecast
 import com.utair.presentation.mvp.weatherforecast.CityWeatherForecastPresenter
 import com.utair.presentation.mvp.weatherforecast.CityWeatherForecastView
 import com.utair.presentation.ui.global.base.BaseFragment

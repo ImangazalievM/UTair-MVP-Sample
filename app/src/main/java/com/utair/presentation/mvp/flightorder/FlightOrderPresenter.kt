@@ -1,10 +1,10 @@
 package com.utair.presentation.mvp.flightorder
 
 import com.arellomobile.mvp.InjectViewState
+import com.utair.domain.global.models.FlightOrderData
 import com.utair.domain.flightorder.MainInteractor
 import com.utair.domain.global.exceptions.NoNetworkException
-import com.utair.domain.global.exceptions.WeatherSettingsValidationError
-import com.utair.domain.global.models.WeatherSettings
+import com.utair.domain.global.exceptions.FlightOrderDataValidationError
 import com.utair.presentation.ui.global.base.mvp.BasePresenter
 import com.utair.presentation.ui.global.navigation.WeatherForecastScreen
 import com.utair.presentation.utils.DebugUtils
@@ -19,18 +19,22 @@ class FlightOrderPresenter @Inject constructor(
         private val navigator: Navigator
 ) : BasePresenter<FlightOrderView>() {
 
-    private lateinit var weatherSettings: WeatherSettings
+    private var departCity: String? = null
+    private var arriveCity: String? = null
     private var departureDate: DateTime = DateTime()
-    private var returnDate: DateTime? = DateTime().plusWeeks(1)
+    private var arriveDate: DateTime? = DateTime().plusWeeks(1)
     private lateinit var cities: List<String>
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
         viewState.showDepartDate(departureDate)
-        viewState.showReturnDate(returnDate)
-        this.weatherSettings = interactor.getWeatherSettings()
-        if (weatherSettings.departCity == null || weatherSettings.arriveCity == null) {
+        viewState.showReturnDate(arriveDate!!)
+
+        val flightOrderData = interactor.getFlightOrderData()
+        if (flightOrderData.departCity == null || flightOrderData.arriveCity == null) {
+            departCity = flightOrderData.departCity
+            arriveCity = flightOrderData.arriveCity
             viewState.disableSwapCitiesButton()
         }
 
@@ -45,7 +49,7 @@ class FlightOrderPresenter @Inject constructor(
     }
 
     fun onDepartCitySelected(departCity: String) {
-        weatherSettings.departCity = departCity
+        this.departCity = departCity
         viewState.showDepartCity(departCity)
         viewState.enableSwapCitiesButton()
     }
@@ -57,16 +61,15 @@ class FlightOrderPresenter @Inject constructor(
     }
 
     fun onArriveCitySelected(arriveCity: String) {
-        weatherSettings.arriveCity = arriveCity
+        this.arriveCity = arriveCity
         viewState.showArriveCity(arriveCity)
         viewState.enableSwapCitiesButton()
     }
 
     fun onSwapCitiesButtonClicked() {
-        val departCity = weatherSettings.departCity
-        val arriveCity = weatherSettings.arriveCity
-        weatherSettings.departCity = arriveCity
-        weatherSettings.arriveCity = departCity
+        val oldDepartCity = this.departCity
+        departCity = arriveCity
+        arriveCity = oldDepartCity
         updateCitiesView()
     }
 
@@ -76,35 +79,36 @@ class FlightOrderPresenter @Inject constructor(
 
     fun onDepartDateSelected(departureDate: DateTime) {
         this.departureDate = departureDate
-        viewState.showDepartDate(returnDate)
+        viewState.showDepartDate(departureDate)
     }
 
     fun onReturnDateClicked() {
-        viewState.showReturnDatePicker(departureDate)
+        viewState.showReturnDatePicker(arriveDate!!)
     }
 
     fun onReturnDateSelected(returnDate: DateTime) {
-        this.returnDate = returnDate
+        this.arriveDate = returnDate
         viewState.showReturnDate(returnDate)
     }
 
     fun onSetReturnDateButtonClicked() {
-        viewState.showReturnDatePicker(departureDate)
+        viewState.showReturnDatePicker(arriveDate ?: departureDate)
     }
 
     fun onClearReturnDateClicked() {
-        returnDate = null
+        arriveDate = null
         viewState.hideReturnDate()
         viewState.showReturnDateButton()
     }
 
     fun onFindFlightsButtonClicked() {
-        interactor.saveWeatherSettings(weatherSettings)
+        val data = FlightOrderData(arriveCity, departCity)
         try {
-            interactor.validateData(weatherSettings)
+            interactor.validateData(data)
+            interactor.saveFlightOrderData(data)
             val screen = WeatherForecastScreen(
-                    arriveCity = weatherSettings.arriveCity!!,
-                    departCity = weatherSettings.departCity!!
+                    arriveCity = arriveCity!!,
+                    departCity = departCity!!
             )
             navigator.goForward(screen)
         } catch (error: Exception) {
@@ -113,7 +117,7 @@ class FlightOrderPresenter @Inject constructor(
     }
 
     private fun handleValidationError(throwable: Throwable) {
-        if (throwable is WeatherSettingsValidationError) {
+        if (throwable is FlightOrderDataValidationError) {
             viewState.showValidationErrorMessage(throwable.errorMessage)
         } else {
             DebugUtils.showDebugErrorMessage(throwable)
@@ -121,13 +125,13 @@ class FlightOrderPresenter @Inject constructor(
     }
 
     private fun updateCitiesView() {
-        if (weatherSettings.departCity != null) {
-            viewState.showDepartCity(weatherSettings.departCity)
+        if (departCity != null) {
+            viewState.showDepartCity(departCity!!)
         } else {
             viewState.showEmptyDepartCity()
         }
-        if (weatherSettings.arriveCity != null) {
-            viewState.showArriveCity(weatherSettings.arriveCity)
+        if (arriveCity != null) {
+            viewState.showArriveCity(arriveCity!!)
         } else {
             viewState.showEmptyArriveCity()
         }

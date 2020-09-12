@@ -46,7 +46,7 @@
                 android:id="@+id/adultCounterLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Взрослый"
+                android:text="@string/adult_passenger"
                 android:textAppearance="@style/PassengerCounterLabel" />
         </LinearLayout>
 
@@ -96,7 +96,7 @@
                 android:id="@+id/kidCounterLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2-12 лет"
+                android:text="@string/kid_passenger"
                 android:textAppearance="@style/PassengerCounterLabel" />
         </LinearLayout>
 
@@ -146,7 +146,7 @@
                 android:id="@+id/babyPassengerLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="до 2-х лет"
+                android:text="@string/baby_passenger"
                 android:textAppearance="@style/PassengerCounterLabel" />
         </LinearLayout>
 
