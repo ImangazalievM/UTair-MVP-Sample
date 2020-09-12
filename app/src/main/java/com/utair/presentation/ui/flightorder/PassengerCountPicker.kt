@@ -8,9 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.utair.R
 import kotlinx.android.synthetic.main.passenger_count_picker_view.view.*
-import javax.inject.Inject
 
-class PassengerCountPicker @Inject constructor(
+class PassengerCountPicker @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet?,
         theme: Int = 0

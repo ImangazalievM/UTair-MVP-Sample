@@ -12,8 +12,6 @@ open class BasePresenter<V : MvpView> : MvpPresenter<V>() {
 
     override fun onDestroy() {
         compositeDisposable.dispose()
-
-        Completable.complete().subscribe()
     }
 
     protected fun Disposable.connect() {

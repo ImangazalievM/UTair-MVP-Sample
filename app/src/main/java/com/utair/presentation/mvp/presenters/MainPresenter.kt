@@ -1,22 +1,21 @@
 package com.utair.presentation.mvp.presenters
 
-import android.util.Log
 import com.arellomobile.mvp.InjectViewState
-import com.arellomobile.mvp.MvpPresenter
+import com.utair.domain.flightorder.MainInteractor
 import com.utair.domain.global.exceptions.NoNetworkException
 import com.utair.domain.global.exceptions.WeatherSettingsValidationError
-import com.utair.domain.flightorder.MainInteractor
 import com.utair.domain.global.models.WeatherSettings
 import com.utair.presentation.mvp.views.MainView
+import com.utair.presentation.ui.global.base.mvp.BasePresenter
 import com.utair.presentation.utils.DebugUtils
+import io.reactivex.rxkotlin.subscribeBy
 import org.joda.time.DateTime
-import java.util.*
 import javax.inject.Inject
 
 @InjectViewState
 class MainPresenter @Inject constructor(
         private val interactor: MainInteractor
-) : MvpPresenter<MainView>() {
+) : BasePresenter<MainView>() {
 
     private lateinit var weatherSettings: WeatherSettings
     private var departureDate: DateTime = DateTime()
@@ -26,28 +25,15 @@ class MainPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        initUi()
-        loadWeatherSettings()
-
-        fetchCities()
-    }
-
-    private fun initUi() {
         viewState.showDepartDate(departureDate)
         viewState.showReturnDate(returnDate)
-    }
-
-    private fun loadWeatherSettings() {
-        interactor.getWeatherSettings()
-                .subscribe { weatherSettings: WeatherSettings -> onWeatherSettingsLoaded(weatherSettings) }
-    }
-
-    private fun onWeatherSettingsLoaded(weatherSettings: WeatherSettings) {
-        this.weatherSettings = weatherSettings
+        this.weatherSettings = interactor.getWeatherSettings()
         if (weatherSettings.departCity == null || weatherSettings.arriveCity == null) {
             viewState.disableSwapCitiesButton()
         }
+
         updateCitiesView()
+        fetchCities()
     }
 
     fun onDepartCityClicked() {
@@ -111,14 +97,13 @@ class MainPresenter @Inject constructor(
     }
 
     fun onFindFlightsButtonClicked() {
-        interactor.saveWeatherSettings(weatherSettings).blockingAwait()
-        interactor.validateData(weatherSettings!!)
-                .subscribe(
-                        {
-                            viewState.openWeatherScreen()
-                        },
-                        { throwable: Throwable -> handleValidationError(throwable) }
-                )
+        interactor.saveWeatherSettings(weatherSettings)
+        try {
+            interactor.validateData(weatherSettings)
+            viewState.openWeatherScreen()
+        } catch (error: Exception) {
+            handleValidationError(error)
+        }
     }
 
     private fun handleValidationError(throwable: Throwable) {
@@ -144,16 +129,16 @@ class MainPresenter @Inject constructor(
 
     private fun fetchCities() {
         interactor.getCities()
-                .subscribe({ cities: List<String> ->
-                    Collections.sort(cities) { obj: String, str: String? ->
-                        obj.compareTo(str!!, ignoreCase = true)
-                    }
-                    this.cities = cities
-                }) { throwable: Throwable -> handleFetchCitiesError(throwable) }
+                .subscribeBy(
+                        onSuccess = { cities ->
+                            this.cities = cities.sortedBy { it.toLowerCase() }
+                        },
+                        onError = { handleFetchCitiesError(it) }
+                )
+                .connect()
     }
 
     private fun handleFetchCitiesError(throwable: Throwable) {
-        Log.e("UTair", "FetchCitiesError", throwable)
         if (throwable is NoNetworkException) {
             viewState.showNoNetworkMessage()
         } else {

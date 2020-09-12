@@ -21,17 +21,10 @@ class WeatherForecastPresenter @Inject constructor(
     }
 
     private fun showCitiesForecasts() {
-        weatherForecastInteractor.getWeatherSettings()
-                .subscribe(
-                        { onWeatherSettingsLoaded(it) },
-                        { handleError(it) }
-                )
-    }
-
-    private fun onWeatherSettingsLoaded(weatherSettings: WeatherSettings) {
+        val weatherSettings = weatherForecastInteractor.getWeatherSettings()
         val departCity = weatherSettings.departCity
         val arriveCity = weatherSettings.arriveCity
-        viewState.showCitiesNames(departCity, arriveCity)
+        viewState.showCitiesNames(departCity!!, arriveCity!!)
         viewState.showForecastForCities(departCity, arriveCity)
     }
 

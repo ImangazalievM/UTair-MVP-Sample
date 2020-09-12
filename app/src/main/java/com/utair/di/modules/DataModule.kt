@@ -2,14 +2,12 @@ package com.utair.di.modules
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.utair.data.cities.CityRepository
 import com.utair.data.global.network.*
 import com.utair.data.global.network.responses.WeatherForecastResponse
-import com.utair.data.cities.CityRepository
 import com.utair.data.weather.WeatherRepository
-import com.utair.data.global.WeatherSettingsRepository
+import com.utair.domain.global.repositories.IWeatherRepository
 import com.utair.domain.global.repositories.ICityRepository
-import com.utair.domain.global.IWeatherRepository
-import com.utair.domain.global.repositories.IWeatherSettingsRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -33,14 +31,6 @@ class DataModule(
     @Provides
     @Singleton
     fun provideWeatherRepository(repository: WeatherRepository): IWeatherRepository {
-        return repository
-    }
-
-    @Provides
-    @Singleton
-    fun provideWeatherSettingsRepository(
-            repository: WeatherSettingsRepository
-    ): IWeatherSettingsRepository {
         return repository
     }
 

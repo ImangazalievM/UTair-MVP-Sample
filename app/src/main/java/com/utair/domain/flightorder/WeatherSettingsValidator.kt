@@ -1,32 +1,21 @@
 package com.utair.domain.flightorder
 
 import com.utair.R
-import com.utair.di.qualifiers.JobScheduler
-import com.utair.di.qualifiers.UiScheduler
 import com.utair.domain.global.ResourceManager
 import com.utair.domain.global.exceptions.WeatherSettingsValidationError
 import com.utair.domain.global.models.WeatherSettings
-import io.reactivex.Completable
-import io.reactivex.CompletableEmitter
-import io.reactivex.Scheduler
 import java.util.*
 import javax.inject.Inject
 
 class WeatherSettingsValidator @Inject constructor(
-        @JobScheduler jobScheduler: Scheduler?,
-        @UiScheduler uiScheduler: Scheduler?,
         private val resourceManager: ResourceManager
 ) {
 
-    fun validate(weatherSettings: WeatherSettings): Completable {
-        return Completable.create { e: CompletableEmitter ->
-            val validateErrors = validateWeatherSettings(weatherSettings)
-            if (validateErrors.isNotEmpty()) {
-                //отправляем на обработку одну ошибку
-                e.onError(validateErrors[0])
-            } else {
-                e.onComplete()
-            }
+    fun validate(weatherSettings: WeatherSettings) {
+        val validateErrors = validateWeatherSettings(weatherSettings)
+        //отправляем на обработку одну ошибку
+        validateErrors.firstOrNull()?.let {
+            throw it
         }
     }
 

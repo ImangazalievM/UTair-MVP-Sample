@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import com.utair.domain.global.models.WeatherSettings
 import javax.inject.Inject
 
-class WeatherPreferences @Inject constructor(context: Context) {
+class UTairPreferences @Inject constructor(context: Context) {
 
     private val appPreferences: SharedPreferences
 
