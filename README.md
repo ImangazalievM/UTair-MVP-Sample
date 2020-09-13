@@ -7,8 +7,8 @@ The sample app that demonstrates using Clean Architecture + MVP.
 
 The project contains 3 modules:
 - **core** - contains common code for both modules
-- **app-coroutines** - Coroutines, Dagger 2
-- **app-rxjava** - RxJava 2, Toothpick
+- **app-coroutines** - Coroutines, Toothpick
+- **app-rxjava** - RxJava 2, Dagger 2
 
 This project includes the following libraries, tools and solutions:
 
