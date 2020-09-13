@@ -5,6 +5,8 @@
 
 The sample app that demonstrates using Clean Architecture + MVP.
 
+### 🏛 Project Structure
+
 The project contains 3 modules:
 - **core** - contains common code for both modules
 - **app-coroutines** - Coroutines, Toothpick
@@ -19,7 +21,14 @@ This project includes the following libraries, tools and solutions:
 - [Spek](https://github.com/spekframework/spek) + [MockK](https://github.com/mockk/mockk) - for unit-tests
 - [Kaspresso](https://github.com/KasperskyLab/Kaspresso) - for UI-tests
 
-#### ⚠ Attention:
+### 🌦 Open Weather API
+
+The app uses [OpenWeather API](https://openweathermap.org/api) for receiving weather forecasts, 
+so to build the project you have to provide API key. To do it create account on OpenWeather website,
+ then generate your own API key and put it to `open_weather_api_key` property in `api_keys.properties` file.
+
+
+### ⚠ Attention:
 Clean Architecture approach [recommends](https://github.com/ImangazalievM/CleanArchitectureManifest#repository) us to create interfaces for repositories, so domain layer shouldn't know anything about data layer. The main goal of this rule is ability to test our interactors using simple unit-tests. IMHO, it is redundant because using repositories implementation directly doesn't cause any problems.
 
 ## 🤝 License

@@ -22,10 +22,10 @@ android {
         versionName = "1.0"
 
         val properties = Properties()
-        val propsFile = project.rootProject.file("local.properties")
+        val propsFile = project.rootProject.file("api_keys.properties")
         properties.load(FileInputStream(propsFile))
-        val openWeatherApiKey = properties.getProperty("OPENWEATHER_API_KEY")
-        buildConfigField("String", "OPENWEATHER_API_KEY", "\"$openWeatherApiKey\"")
+        val openWeatherApiKey = properties.getProperty("open_weather_api_key")
+        buildConfigField("String", "OPEN_WEATHER_API_KEY", "\"$openWeatherApiKey\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
