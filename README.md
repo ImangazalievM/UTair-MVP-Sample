@@ -3,6 +3,22 @@
 <img src="https://raw.githubusercontent.com/ImangazalievM/UTair-MVP-Sample/master/assets/splash.png" />
 </p>
 
+The sample app that demonstrates using Clean Architecture + MVP.
+
+The project contains 3 modules:
+- **core** - contains common code for both modules
+- **app-coroutines** - Coroutines, Dagger 2
+- **app-rxjava** - RxJava 2, Toothpick
+
+This project includes the following libraries, tools and solutions:
+
+**Dagger 2** / **Toothpick** - for dependency injection
+**RxJava 2** / **Coroutines** - for multithreading
+**Moxy** - for MVP pattern implementation
+**Alligator** - for screens navigatio
+**Spek** + **MocKk** - for unit-tests
+**Kaspresso** - for UI-tests
+
 ## 🤝 License
 ```
 The MIT License
