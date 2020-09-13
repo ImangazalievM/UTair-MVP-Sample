@@ -12,12 +12,12 @@ The project contains 3 modules:
 
 This project includes the following libraries, tools and solutions:
 
-- **[Dagger 2](https://github.com/google/dagger)** / **[Toothpick](https://github.com/stephanenicolas/toothpick)** - for dependency injection
-- **[RxJava 2](https://github.com/ReactiveX/RxJava)** / **[Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)** - for multithreading
-- **[Moxy](https://github.com/Arello-Mobile/Moxy)** - for MVP pattern implementation
-- **[Alligator](https://github.com/aartikov/Alligator)** - for screens navigatio
-- **[Spek](https://github.com/spekframework/spek)** + **MocKk** - for unit-tests
-- **[Kaspresso](https://github.com/KasperskyLab/Kaspresso)** - for UI-tests
+- [Dagger 2](https://github.com/google/dagger) / [Toothpick](https://github.com/stephanenicolas/toothpick) - for dependency injection
+- [RxJava 2](https://github.com/ReactiveX/RxJava) / [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - for multithreading
+- [Moxy](https://github.com/Arello-Mobile/Moxy) - for MVP pattern implementation
+- [Alligator](https://github.com/aartikov/Alligator) - for screens navigatio
+- [Spek](https://github.com/spekframework/spek) + [MockK](https://github.com/mockk/mockk) - for unit-tests
+- [Kaspresso](https://github.com/KasperskyLab/Kaspresso) - for UI-tests
 
 ## 🤝 License
 ```
