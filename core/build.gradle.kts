@@ -26,6 +26,8 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
+    buildFeatures.viewBinding = true
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -48,7 +50,6 @@ dependencies {
     api("com.github.aartikov.Alligator:alligator:4.0.0")
     api("com.arello-mobile:moxy:1.5.5")
     api("com.arello-mobile:moxy-app-compat:1.5.5")
-    kapt("com.arello-mobile:moxy-compiler:1.5.5")
 
     api("com.squareup.retrofit2:retrofit:2.9.0")
     api("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -59,4 +60,6 @@ dependencies {
     api("com.wdullaer:materialdatetimepicker:4.2.3")
     api("com.afollestad.material-dialogs:core:3.3.0")
     api("joda-time:joda-time:2.9.9")
+
+    api("com.jakewharton.timber:timber:4.7.1")
 }

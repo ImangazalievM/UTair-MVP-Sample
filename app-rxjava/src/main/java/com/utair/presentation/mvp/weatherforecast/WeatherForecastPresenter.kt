@@ -12,9 +12,16 @@ class WeatherForecastPresenter @Inject constructor(
         @ArriveCity private val arriveCity: String
 ) : MvpPresenter<WeatherForecastView>() {
 
-    init {
-        onTabSelected(0)
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+
+        onTabSelected(DEPART_CITY_TAB_POSITION)
         showCitiesForecasts()
+    }
+
+    fun onTabSelected(position: Int) {
+        viewState.setTabSelected(position)
+        viewState.openForecastPage(position)
     }
 
     private fun showCitiesForecasts() {
@@ -22,9 +29,9 @@ class WeatherForecastPresenter @Inject constructor(
         viewState.showForecastForCities(departCity, arriveCity)
     }
 
-    fun onTabSelected(position: Int) {
-        viewState.setTabSelected(position)
-        viewState.openForecastPage(position)
+    companion object {
+        const val DEPART_CITY_TAB_POSITION = 0
+        const val ARRIVE_CITY_TAB_POSITION = 1
     }
 
 }

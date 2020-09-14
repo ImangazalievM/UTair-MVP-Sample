@@ -17,25 +17,28 @@ class DataModule(
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(networkChecker: NetworkChecker): OkHttpClient {
-        return OkHttpClient.Builder()
-                .addInterceptor(NetworkCheckInterceptor(networkChecker))
+    fun provideUTairApi(networkCheckInterceptor: NetworkCheckInterceptor): UTairApiService {
+        val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(networkCheckInterceptor)
                 .addInterceptor(WeatherApiInterceptor())
                 .build()
+
+        return newApiBuilder()
+                .okHttpClient(okHttpClient)
+                .createApi(
+                        apiClass = UTairApiService::class,
+                        baseUrl = utairApiBaseUrl
+                )
     }
 
     @Provides
     @Singleton
-    fun provideCityApi(): UTairApiService {
-        return newApiBuilder().createApi(
-                apiClass = UTairApiService::class,
-                baseUrl = utairApiBaseUrl
-        )
-    }
+    fun provideWeatherApi(networkCheckInterceptor: NetworkCheckInterceptor): WeatherApiService {
+        val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(networkCheckInterceptor)
+                .addInterceptor(WeatherApiInterceptor())
+                .build()
 
-    @Provides
-    @Singleton
-    fun provideWeatherApi(okHttpClient: OkHttpClient): WeatherApiService {
         val gson = GsonBuilder()
                 .registerTypeAdapter(WeatherForecastResponse::class.java, WeatherForecastDeserializer())
                 .create()

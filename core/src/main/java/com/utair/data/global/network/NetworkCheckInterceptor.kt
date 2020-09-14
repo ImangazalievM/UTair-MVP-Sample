@@ -4,8 +4,11 @@ import com.utair.domain.global.exceptions.NoNetworkException
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
+import javax.inject.Inject
 
-class NetworkCheckInterceptor(private val networkChecker: NetworkChecker) : Interceptor {
+class NetworkCheckInterceptor @Inject constructor(
+        private val networkChecker: NetworkChecker
+) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

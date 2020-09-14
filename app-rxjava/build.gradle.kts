@@ -20,6 +20,8 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
+    buildFeatures.viewBinding = true
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -36,6 +38,7 @@ android {
 dependencies {
     api(project(":core"))
 
+    kapt("com.arello-mobile:moxy-compiler:1.5.5")
     kapt("com.google.dagger:dagger-compiler:2.29.1")
     implementation("com.google.dagger:dagger:2.29.1")
 

@@ -5,9 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_white"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_white"/>
 
-    <include layout="@layout/cities_forecasts_tabs"/>
+    <include
+        android:id="@+id/tabs"
+        layout="@layout/cities_forecasts_tabs"/>
 
     <FrameLayout
         android:layout_width="wrap_content"

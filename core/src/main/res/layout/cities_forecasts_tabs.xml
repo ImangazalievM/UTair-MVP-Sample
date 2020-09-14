@@ -6,8 +6,7 @@
     android:layout_height="60dp"
     android:background="@color/color_white"
     android:orientation="horizontal"
-    tools:showIn="@layout/activity_weather_forecast"
-    >
+    tools:showIn="@layout/activity_weather_forecast">
 
     <FrameLayout
         android:id="@+id/forwardTab"

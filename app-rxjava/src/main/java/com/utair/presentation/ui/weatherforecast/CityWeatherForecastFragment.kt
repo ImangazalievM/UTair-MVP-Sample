@@ -8,18 +8,22 @@ import android.widget.Toast
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.utair.R
+import com.utair.core.databinding.FragmentCityWeatherForecastBinding
 import com.utair.di.presenters.weatherforecast.cityforecast.CityForecastPresenterModule
 import com.utair.di.presenters.weatherforecast.cityforecast.DaggerCityForecastComponent
 import com.utair.domain.global.models.WeatherForecast.DailyForecast
 import com.utair.presentation.mvp.weatherforecast.CityWeatherForecastPresenter
 import com.utair.presentation.mvp.weatherforecast.CityWeatherForecastView
 import com.utair.presentation.ui.global.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_city_weather_forecast.*
 
 class CityWeatherForecastFragment : BaseFragment(), CityWeatherForecastView {
 
+    private val binding by lazy {
+        FragmentCityWeatherForecastBinding.inflate(layoutInflater)
+    }
+
     @InjectPresenter
-    lateinit var weatherPresenter: CityWeatherForecastPresenter
+    lateinit var presenter: CityWeatherForecastPresenter
 
     @ProvidePresenter
     fun providePresenter(): CityWeatherForecastPresenter {
@@ -32,11 +36,11 @@ class CityWeatherForecastFragment : BaseFragment(), CityWeatherForecastView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_city_weather_forecast, container, false)
+        return binding.root
     }
 
     override fun showForecast(dailyForecasts: List<DailyForecast>) {
-        forecastList.adapter = DailyForecastAdapter(context!!, dailyForecasts)
+        binding.forecastList.adapter = DailyForecastAdapter(context!!, dailyForecasts)
     }
 
     override fun showNoNetworkMessage() {

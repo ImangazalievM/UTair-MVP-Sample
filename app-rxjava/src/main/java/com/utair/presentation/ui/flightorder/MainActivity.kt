@@ -11,21 +11,24 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import com.google.android.material.snackbar.Snackbar
 import com.utair.R
+import com.utair.core.databinding.ActivityMainBinding
 import com.utair.di.presenters.orderflight.DaggerFlightOrderComponent
 import com.utair.presentation.mvp.flightorder.FlightOrderPresenter
 import com.utair.presentation.mvp.flightorder.FlightOrderView
 import com.utair.presentation.ui.global.base.BaseMvpActivity
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
-import kotlinx.android.synthetic.main.activity_main.*
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 
 class MainActivity : BaseMvpActivity(), FlightOrderView {
 
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
     private val dateFormatter = SimpleDateFormat("d MMM, E")
 
     @InjectPresenter
-    lateinit var flightOrderPresenter: FlightOrderPresenter
+    lateinit var presenter: FlightOrderPresenter
 
     @ProvidePresenter
     fun providePresenter(): FlightOrderPresenter {
@@ -37,34 +40,34 @@ class MainActivity : BaseMvpActivity(), FlightOrderView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
         val plusIcon = VectorDrawableCompat.create(resources, R.drawable.ic_plus_10dp, theme)
-        returnDateButtonLabel.setCompoundDrawablesRelativeWithIntrinsicBounds(plusIcon, null, null, null)
+        binding.returnDateButtonLabel.setCompoundDrawablesRelativeWithIntrinsicBounds(plusIcon, null, null, null)
 
-        departCityLayout.setOnClickListener {
-            flightOrderPresenter.onDepartCityClicked()
+        binding.departCityLayout.setOnClickListener {
+            presenter.onDepartCityClicked()
         }
-        arriveCityLayout.setOnClickListener {
-            flightOrderPresenter.onArriveCityClicked()
+        binding.arriveCityLayout.setOnClickListener {
+            presenter.onArriveCityClicked()
         }
-        swapCitiesButton.setOnClickListener {
-            flightOrderPresenter.onSwapCitiesButtonClicked()
+        binding.swapCitiesButton.setOnClickListener {
+            presenter.onSwapCitiesButtonClicked()
         }
-        departDateLayout.setOnClickListener {
-            flightOrderPresenter.onDepartDateClicked()
+        binding.departDateLayout.setOnClickListener {
+            presenter.onDepartDateClicked()
         }
-        returnDateLayout.setOnClickListener {
-            flightOrderPresenter.onReturnDateClicked()
+        binding.returnDateLayout.setOnClickListener {
+            presenter.onReturnDateClicked()
         }
-        returnDateButton.setOnClickListener {
-            flightOrderPresenter.onSetReturnDateButtonClicked()
+        binding.returnDateButton.setOnClickListener {
+            presenter.onSetReturnDateButtonClicked()
         }
-        cleaReturnDateButton.setOnClickListener {
-            flightOrderPresenter.onClearReturnDateClicked()
+        binding.cleaReturnDateButton.setOnClickListener {
+            presenter.onClearReturnDateClicked()
         }
-        findFlightsButton.setOnClickListener {
-            flightOrderPresenter.onFindFlightsButtonClicked()
+        binding.findFlightsButton.setOnClickListener {
+            presenter.onFindFlightsButtonClicked()
         }
     }
 
@@ -74,79 +77,79 @@ class MainActivity : BaseMvpActivity(), FlightOrderView {
     }
 
     override fun showEmptyDepartCity() {
-        departCityLabel.text = getString(R.string.where_from)
-        departAirportName.visibility = View.INVISIBLE
+        binding.departCityLabel.text = getString(R.string.where_from)
+        binding.departAirportName.visibility = View.INVISIBLE
     }
 
     override fun showDepartCity(departCity: String) {
-        departCityLabel.text = departCity
-        departAirportName.visibility = View.VISIBLE
+        binding.departCityLabel.text = departCity
+        binding.departAirportName.visibility = View.VISIBLE
     }
 
     override fun showDepartCitySelector(cities: List<String>) {
         showCitySelector(cities) {
-            flightOrderPresenter.onDepartCitySelected(it)
+            presenter.onDepartCitySelected(it)
         }
     }
 
     override fun showEmptyArriveCity() {
-        arriveCityLabel.text = getString(R.string.where)
-        arriveAirportName.visibility = View.INVISIBLE
+        binding.arriveCityLabel.text = getString(R.string.where)
+        binding.arriveAirportName.visibility = View.INVISIBLE
     }
 
     override fun showArriveCity(arriveCity: String) {
-        arriveCityLabel.text = arriveCity
-        arriveAirportName.visibility = View.VISIBLE
+        binding.arriveCityLabel.text = arriveCity
+        binding.arriveAirportName.visibility = View.VISIBLE
     }
 
     override fun showArriveCitySelector(cities: List<String>) {
         showCitySelector(cities) {
-            flightOrderPresenter.onArriveCitySelected(it)
+            presenter.onArriveCitySelected(it)
         }
     }
 
     override fun disableSwapCitiesButton() {
-        swapCitiesButton.isEnabled = false
+        binding.swapCitiesButton.isEnabled = false
     }
 
     override fun enableSwapCitiesButton() {
-        swapCitiesButton.isEnabled = true
+        binding.swapCitiesButton.isEnabled = true
     }
 
     override fun showDepartDate(departDate: DateTime) {
-        departDateView.text = dateFormatter.format(departDate.toDate())
+        binding.departDateView.text = dateFormatter.format(departDate.toDate())
     }
 
     override fun showDepartDatePicker(departDate: DateTime) {
         showDatePicker(departDate) {
-            flightOrderPresenter.onDepartDateSelected(it)
+            presenter.onDepartDateSelected(it)
         }
     }
 
     override fun showReturnDate(returnDate: DateTime) {
-        returnDateButton.visibility = View.GONE
-        returnDateLayout.visibility = View.VISIBLE
-        cleaReturnDateButton.visibility = View.VISIBLE
-        returnDateView.text = dateFormatter.format(returnDate.toDate())
+        binding.returnDateButton.visibility = View.GONE
+        binding.returnDateLayout.visibility = View.VISIBLE
+        binding.cleaReturnDateButton.visibility = View.VISIBLE
+        binding.returnDateView.text = dateFormatter.format(returnDate.toDate())
     }
 
     override fun showReturnDatePicker(returnDate: DateTime) {
         showDatePicker(returnDate) {
-            flightOrderPresenter.onReturnDateSelected(it)
+            presenter.onReturnDateSelected(it)
         }
     }
 
     override fun hideReturnDate() {
-        returnDateLayout.visibility = View.GONE
-        cleaReturnDateButton.visibility = View.GONE
+        binding.returnDateLayout.visibility = View.GONE
+        binding.cleaReturnDateButton.visibility = View.GONE
     }
 
     override fun showReturnDateButton() {
-        returnDateButton.visibility = View.VISIBLE
+        binding.returnDateButton.visibility = View.VISIBLE
     }
 
     override fun hideReturnDateButton() {
-        returnDateButton.visibility = View.GONE
+        binding.returnDateButton.visibility = View.GONE
     }
 
     override fun showNoNetworkMessage() {
@@ -154,7 +157,7 @@ class MainActivity : BaseMvpActivity(), FlightOrderView {
     }
 
     override fun showValidationErrorMessage(errorMessage: String) {
-        val snackbar = Snackbar.make(snackbarContainer, errorMessage, Snackbar.LENGTH_LONG)
+        val snackbar = Snackbar.make(binding.snackbarContainer, errorMessage, Snackbar.LENGTH_LONG)
         snackbar.view.setBackgroundResource(R.color.color_blue_dark100)
         snackbar.show()
     }

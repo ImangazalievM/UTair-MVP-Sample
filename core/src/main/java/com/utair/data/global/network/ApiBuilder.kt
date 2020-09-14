@@ -12,19 +12,19 @@ class ApiBuilder {
 
     private var okHttpClient: OkHttpClient? = null
     private var gson: Gson = GsonBuilder().create()
-    private lateinit var callAdapter: CallAdapter.Factory
+    private var callAdapter: CallAdapter.Factory? = null
 
-    fun okHttpClient(okHttpClient: OkHttpClient): ApiBuilder{
+    fun okHttpClient(okHttpClient: OkHttpClient): ApiBuilder {
         this.okHttpClient = okHttpClient
         return this
     }
 
-    fun gson(gson: Gson): ApiBuilder{
+    fun gson(gson: Gson): ApiBuilder {
         this.gson = gson
         return this
     }
 
-    fun callAdapter(callAdapter: CallAdapter.Factory): ApiBuilder{
+    fun callAdapter(callAdapter: CallAdapter.Factory): ApiBuilder {
         this.callAdapter = callAdapter
         return this
     }
@@ -34,8 +34,10 @@ class ApiBuilder {
             baseUrl: String
     ): T {
         val builder = Retrofit.Builder()
-                .addCallAdapterFactory(callAdapter)
                 .baseUrl(baseUrl)
+        callAdapter?.let {
+            builder.addCallAdapterFactory(it)
+        }
         okHttpClient?.let {
             builder.client(it)
         }

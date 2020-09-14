@@ -3,7 +3,7 @@ package com.utair.presentation.mvp.global
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
-import com.utair.core.BuildConfig
+import timber.log.Timber
 import javax.inject.Inject
 
 class ErrorHandler @Inject constructor(
@@ -11,10 +11,8 @@ class ErrorHandler @Inject constructor(
 ) {
 
     fun handle(throwable: Throwable) {
-        if (BuildConfig.DEBUG) {
-            Log.e("UTair", throwable.message, throwable)
-            Toast.makeText(context, throwable.message, Toast.LENGTH_SHORT).show()
-        }
+        Timber.e(throwable)
+        Toast.makeText(context, throwable.message, Toast.LENGTH_SHORT).show()
     }
 
 }

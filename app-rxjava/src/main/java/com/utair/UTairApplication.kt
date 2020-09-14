@@ -1,10 +1,8 @@
 package com.utair
 
 import android.app.Application
-import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-import com.utair.data.global.network.UTairApiService
-import com.utair.data.global.network.WeatherApiService
+import com.utair.data.global.network.ApiConstants
 import com.utair.di.ApplicationComponent
 import com.utair.di.DaggerApplicationComponent
 import com.utair.di.modules.ApplicationModule
@@ -32,7 +30,10 @@ class UTairApplication : Application() {
 
     fun prepareComponent(): ApplicationComponent {
         return DaggerApplicationComponent.builder()
-                .dataModule(DataModule(UTairApiService.BASE_URL, WeatherApiService.BASE_URL))
+                .dataModule(DataModule(
+                        utairApiBaseUrl = ApiConstants.CITIES_BASE_URL,
+                        weatherApiBaseUrl = ApiConstants.OPEN_WEATHER_BASE_URL
+                ))
                 .applicationModule(ApplicationModule(applicationContext))
                 .navigationModule(NavigationModule())
                 .build()
@@ -43,16 +44,9 @@ class UTairApplication : Application() {
         private lateinit var applicationComponent: ApplicationComponent
 
         @JvmStatic
-        lateinit var context: Context
-
-        @JvmStatic
         fun component(): ApplicationComponent {
             return applicationComponent
         }
-    }
-
-    init {
-        context = this
     }
 
 }
