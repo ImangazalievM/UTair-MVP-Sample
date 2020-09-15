@@ -1,6 +1,6 @@
 package com.utair.domain.global.models
 
-class FlightOrderData(
+data class FlightOrderData(
         val departCity: String?,
         val arriveCity: String?
 )

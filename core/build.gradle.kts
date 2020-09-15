@@ -53,6 +53,7 @@ dependencies {
 
     api("com.squareup.retrofit2:retrofit:2.9.0")
     api("com.squareup.retrofit2:converter-gson:2.9.0")
+    api("com.squareup.okhttp3:logging-interceptor:${Versions.okhttpVersion}")
 
     api("io.github.inflationx:calligraphy3:3.1.1")
     api("io.github.inflationx:viewpump:2.0.3")

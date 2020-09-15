@@ -36,7 +36,7 @@ class FlightOrderPresenter @Inject constructor(
         if (flightOrderData.departCity == null || flightOrderData.arriveCity == null) {
             departCity = flightOrderData.departCity
             arriveCity = flightOrderData.arriveCity
-            viewState.disableSwapCitiesButton()
+            viewState.enableSwapCitiesButton(false)
         }
 
         updateCitiesView()
@@ -52,7 +52,7 @@ class FlightOrderPresenter @Inject constructor(
     fun onDepartCitySelected(departCity: String) {
         this.departCity = departCity
         viewState.showDepartCity(departCity)
-        viewState.enableSwapCitiesButton()
+        viewState.enableSwapCitiesButton(true)
     }
 
     fun onArriveCityClicked() {
@@ -64,7 +64,7 @@ class FlightOrderPresenter @Inject constructor(
     fun onArriveCitySelected(arriveCity: String) {
         this.arriveCity = arriveCity
         viewState.showArriveCity(arriveCity)
-        viewState.enableSwapCitiesButton()
+        viewState.enableSwapCitiesButton(true)
     }
 
     fun onSwapCitiesButtonClicked() {
@@ -89,6 +89,7 @@ class FlightOrderPresenter @Inject constructor(
 
     fun onReturnDateSelected(returnDate: DateTime) {
         this.arriveDate = returnDate
+        viewState.updateReturnDateVisiblity(true)
         viewState.showReturnDate(returnDate)
     }
 
@@ -98,12 +99,12 @@ class FlightOrderPresenter @Inject constructor(
 
     fun onClearReturnDateClicked() {
         arriveDate = null
-        viewState.hideReturnDate()
-        viewState.showReturnDateButton()
+        viewState.updateReturnDateVisiblity(false)
+        viewState.showReturnDateButton(true)
     }
 
     fun onFindFlightsButtonClicked() {
-        val data = FlightOrderData(arriveCity, departCity)
+        val data = FlightOrderData(departCity, arriveCity)
         try {
             interactor.validateData(data)
             interactor.saveFlightOrderData(data)

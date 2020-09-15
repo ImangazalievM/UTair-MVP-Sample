@@ -1,6 +1,7 @@
+
+
 buildscript {
     val kotlinVersion = "1.3.72"
-
     repositories {
         google()
         jcenter()
@@ -9,12 +10,17 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:4.0.1")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+        classpath("de.mannodermaus.gradle.plugins:android-junit5:1.2.0.0")
+        classpath("org.junit.platform:junit-platform-gradle-plugin:1.0.1")
     }
 }
 
 extra.apply {
-    val rxBindingVersion = "2.2.0"
-    set("rxBinding", "com.jakewharton.rxbinding2:rxbinding-kotlin:$rxBindingVersion")
+    val kotlinVersion = "1.3.72"
+    set("kotlinVersion", kotlinVersion)
+    set("junitPlatform", "1.0.1")
+    set("spekVersion", "2.0.0-rc.1")
+
 }
 
 allprojects {

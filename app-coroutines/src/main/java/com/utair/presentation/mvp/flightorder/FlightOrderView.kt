@@ -23,9 +23,7 @@ interface FlightOrderView : MvpView {
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun showArriveCitySelector(cities: List<String>)
 
-    fun disableSwapCitiesButton()
-
-    fun enableSwapCitiesButton()
+    fun enableSwapCitiesButton(isEnabled: Boolean)
 
     fun showDepartDate(departDate: DateTime)
 
@@ -34,14 +32,12 @@ interface FlightOrderView : MvpView {
 
     fun showReturnDate(returnDate: DateTime)
 
+    fun updateReturnDateVisiblity(isVisible: Boolean)
+
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun showReturnDatePicker(returnDate: DateTime)
 
-    fun hideReturnDate()
-
-    fun showReturnDateButton()
-
-    fun hideReturnDateButton()
+    fun showReturnDateButton(isVisible: Boolean)
 
     fun showNoNetworkMessage()
 

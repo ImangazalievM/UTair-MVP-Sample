@@ -55,7 +55,7 @@ class MainActivity : BaseMvpActivity(), FlightOrderView {
             presenter.onSwapCitiesButtonClicked()
         }
         binding.departDateLayout.setOnClickListener {
-            presenter.onDepartDateClicked()
+            presenter.onSetDepartDateClicked()
         }
         binding.returnDateLayout.setOnClickListener {
             presenter.onReturnDateClicked()

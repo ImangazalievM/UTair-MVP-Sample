@@ -16,6 +16,7 @@ import com.utair.di.get
 import com.utair.presentation.mvp.flightorder.FlightOrderPresenter
 import com.utair.presentation.mvp.flightorder.FlightOrderView
 import com.utair.presentation.ui.global.base.BaseActivity
+import com.utair.presentation.ui.global.visible
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
@@ -103,12 +104,8 @@ class MainActivity : BaseActivity(), FlightOrderView {
         }
     }
 
-    override fun disableSwapCitiesButton() {
-        binding.swapCitiesButton.isEnabled = false
-    }
-
-    override fun enableSwapCitiesButton() {
-        binding.swapCitiesButton.isEnabled = true
+    override fun enableSwapCitiesButton(isEnabled: Boolean) {
+        binding.swapCitiesButton.isEnabled = isEnabled
     }
 
     override fun showDepartDate(departDate: DateTime) {
@@ -122,10 +119,13 @@ class MainActivity : BaseActivity(), FlightOrderView {
     }
 
     override fun showReturnDate(returnDate: DateTime) {
-        binding.returnDateButton.visibility = View.GONE
-        binding.returnDateLayout.visibility = View.VISIBLE
-        binding.cleaReturnDateButton.visibility = View.VISIBLE
         binding.returnDateView.text = dateFormatter.format(returnDate.toDate())
+    }
+
+    override fun updateReturnDateVisiblity(isVisible: Boolean) {
+        binding.returnDateButton.visible(isVisible)
+        binding.returnDateLayout.visible(!isVisible)
+        binding.cleaReturnDateButton.visible(isVisible)
     }
 
     override fun showReturnDatePicker(returnDate: DateTime) {
@@ -134,17 +134,8 @@ class MainActivity : BaseActivity(), FlightOrderView {
         }
     }
 
-    override fun hideReturnDate() {
-        binding.returnDateLayout.visibility = View.GONE
-        binding.cleaReturnDateButton.visibility = View.GONE
-    }
-
-    override fun showReturnDateButton() {
-        binding.returnDateButton.visibility = View.VISIBLE
-    }
-
-    override fun hideReturnDateButton() {
-        binding.returnDateButton.visibility = View.GONE
+    override fun showReturnDateButton(isVisible: Boolean) {
+        binding.returnDateButton.visible(isVisible)
     }
 
     override fun showNoNetworkMessage() {

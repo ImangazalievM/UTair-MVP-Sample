@@ -46,4 +46,15 @@ dependencies {
     implementation("io.reactivex.rxjava2:rxandroid:2.1.0")
     implementation("io.reactivex.rxjava2:rxkotlin:2.0.0")
     implementation("com.squareup.retrofit2:adapter-rxjava2:2.3.0")
+
+    // unit-tests
+    testImplementation(Dependencies.Tests.kotlinReflect)
+    testImplementation(kotlin(Dependencies.Tests.stdJdk))
+
+    testImplementation(Dependencies.Tests.spek)
+    testImplementation(Dependencies.Tests.spekRunner)
+    testImplementation(Dependencies.Tests.mockk)
+    testImplementation(Dependencies.Tests.strikt)
+
+    testImplementation(Dependencies.Tests.okhttpMockServer)
 }

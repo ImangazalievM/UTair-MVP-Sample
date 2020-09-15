@@ -74,7 +74,7 @@ class FlightOrderPresenter @Inject constructor(
         updateCitiesView()
     }
 
-    fun onDepartDateClicked() {
+    fun onSetDepartDateClicked() {
         viewState.showDepartDatePicker(departureDate)
     }
 
