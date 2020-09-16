@@ -27,9 +27,14 @@ The app uses [OpenWeather API](https://openweathermap.org/api) for receiving wea
 so to build the project you have to provide API key. To do it create account on OpenWeather website,
  then generate your own API key and put it to `open_weather_api_key` property in `api_keys.properties` file.
 
-
 ### ⚠ Attention:
 Clean Architecture approach [recommends](https://github.com/ImangazalievM/CleanArchitectureManifest#repository) us to create interfaces for repositories, so domain layer shouldn't know anything about data layer. The main goal of this rule is ability to test our interactors using simple unit-tests. IMHO, it is redundant because using repositories implementation directly doesn't cause any problems.
+
+### 🚦️ Tests Runnning
+
+UI and unit-tests are contained in the **app-coroutines** module.
+
+To run unit-tests, you need to setup [Spek Framework](https://plugins.jetbrains.com/plugin/10915-spek-framework) plugin.
 
 ## 🤝 License
 ```
