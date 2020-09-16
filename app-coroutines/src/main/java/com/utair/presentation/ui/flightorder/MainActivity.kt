@@ -39,21 +39,21 @@ class MainActivity : BaseActivity(), FlightOrderView {
         setContentView(binding.root)
 
         val plusIcon = VectorDrawableCompat.create(resources, R.drawable.ic_plus_10dp, theme)
-        binding.returnDateButtonLabel.setCompoundDrawablesRelativeWithIntrinsicBounds(plusIcon, null, null, null)
+        binding.addReturnDateButtonLabel.setCompoundDrawablesRelativeWithIntrinsicBounds(plusIcon, null, null, null)
 
-        binding.departCityLayout.setOnClickListener {
+        binding.departCityButton.setOnClickListener {
             presenter.onDepartCityClicked()
         }
-        binding.arriveCityLayout.setOnClickListener {
+        binding.arriveCityButton.setOnClickListener {
             presenter.onArriveCityClicked()
         }
         binding.swapCitiesButton.setOnClickListener {
             presenter.onSwapCitiesButtonClicked()
         }
-        binding.departDateLayout.setOnClickListener {
+        binding.departDateButton.setOnClickListener {
             presenter.onDepartDateClicked()
         }
-        binding.returnDateLayout.setOnClickListener {
+        binding.returnDateButton.setOnClickListener {
             presenter.onReturnDateClicked()
         }
         binding.returnDateButton.setOnClickListener {
@@ -124,7 +124,7 @@ class MainActivity : BaseActivity(), FlightOrderView {
 
     override fun updateReturnDateVisiblity(isVisible: Boolean) {
         binding.returnDateButton.visible(isVisible)
-        binding.returnDateLayout.visible(!isVisible)
+        binding.returnDateButton.visible(!isVisible)
         binding.cleaReturnDateButton.visible(isVisible)
     }
 

@@ -7,12 +7,8 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface WeatherForecastView : MvpView {
 
-    fun showCitiesNames(departCityName: String, arriveCityName: String)
-
-    fun setTabSelected(currentTabPosition: Int)
+    fun showForecastForCities(departCity: String, arriveCity: String)
 
     fun openForecastPage(position: Int)
-
-    fun showForecastForCities(departCity: String, arriveCity: String)
 
 }

@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.utair.R
 import com.utair.core.databinding.ActivityWeatherForecastBinding
-import com.utair.core.databinding.CitiesForecastsTabsBinding
-import com.utair.core.databinding.ToolbarWhiteBinding
 import com.utair.di.bindPrimitive
 import com.utair.di.get
 import com.utair.di.installModule
@@ -59,21 +56,10 @@ class WeatherForecastActivity : BaseActivity(), WeatherForecastView {
         })
     }
 
-    override fun showCitiesNames(departCityName: String, arriveCityName: String) {
-        binding.toolbar.departCityLabel.text = departCityName
-        binding.toolbar.arriveCityLabel.text = arriveCityName
-    }
-
-    override fun setTabSelected(currentTabPosition: Int) {
-        binding.tabs.forwardTab.isSelected = currentTabPosition == DEPART_CITY_TAB_POSITION
-        binding.tabs.returnTab.isSelected = currentTabPosition == ARRIVE_CITY_TAB_POSITION
-    }
-
-    override fun openForecastPage(position: Int) {
-        binding.citiesForecastPager.currentItem = position
-    }
-
     override fun showForecastForCities(departCity: String, arriveCity: String) {
+        binding.toolbar.departCityLabel.text = departCity
+        binding.toolbar.arriveCityLabel.text = arriveCity
+
         binding.citiesForecastPager.adapter = CitiesForecastPagerAdapter(
                 fragmentManager = supportFragmentManager,
                 departCityName = departCity,
@@ -82,6 +68,12 @@ class WeatherForecastActivity : BaseActivity(), WeatherForecastView {
                     CityWeatherForecastFragment.newInstance(it)
                 }
         )
+    }
+
+    override fun openForecastPage(position: Int) {
+        binding.tabs.forwardTab.isSelected = position == DEPART_CITY_TAB_POSITION
+        binding.tabs.returnTab.isSelected = position == ARRIVE_CITY_TAB_POSITION
+        binding.citiesForecastPager.currentItem = position
     }
 
 }

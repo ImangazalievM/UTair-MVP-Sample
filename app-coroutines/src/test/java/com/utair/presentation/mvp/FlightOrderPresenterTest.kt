@@ -22,7 +22,7 @@ import strikt.assertions.isEqualTo
 
 class FlightOrderPresenterTest : Spek({
 
-    val interactor by memoized { mockk<MainInteractor>() }
+    val interactor by memoized(CachingMode.TEST) { mockk<MainInteractor>() }
     val navigator by memoized { mockk<Navigator>() }
     val errorHandler by memoized { mockk<ErrorHandler>() }
     val view by memoized { mockk<FlightOrderView>(relaxed = true) }
@@ -61,9 +61,8 @@ class FlightOrderPresenterTest : Spek({
 
             it("should load cities list") {
                 coVerify {
+                    view.showEmptyArriveCity()
                     interactor.getCities()
-                    view.showEmptyArriveCity()
-                    view.showEmptyArriveCity()
                 }
             }
         }
@@ -74,7 +73,7 @@ class FlightOrderPresenterTest : Spek({
                 presenter.attachView(view)
             }
 
-            it("should load translations list on first attach") {
+            it("should show network error") {
                 coVerify {
                     interactor.getCities()
                     view.showNoNetworkMessage()
@@ -158,27 +157,27 @@ class FlightOrderPresenterTest : Spek({
                 }
 
                 describe("on depart date selected") {
-                    val departDate = mockk<DateTime>()
+                    val departDate by memoized { DateTime() }
                     beforeEachTest {
                         presenter.onDepartDateClicked()
                         presenter.onDepartDateSelected(departDate)
                     }
-                    it("should show depart date picker]") {
+                    it("should show depart date picker") {
                         verifyOrder {
-                            //view.showDepartDatePicker(any())
+                            view.showDepartDatePicker(any())
                             view.showDepartDate(departDate)
                         }
                     }
                 }
 
                 describe("on date selected before") {
-                    val departDate = mockk<DateTime>()
+                    val departDate by memoized { DateTime() }
                     beforeEachTest {
                         presenter.onDepartDateClicked()
                         presenter.onDepartDateSelected(departDate)
                         presenter.onDepartDateClicked()
                     }
-                    it("should show depart date picker]") {
+                    it("should show depart date picker") {
                         verifyOrder {
                             view.showDepartDatePicker(any())
                             view.showDepartDate(departDate)
@@ -198,13 +197,13 @@ class FlightOrderPresenterTest : Spek({
                     }
                 }
 
-                describe("on depart date selected") {
-                    val returnDate = mockk<DateTime>()
+                describe("on return date selected") {
+                    val returnDate by memoized { DateTime() }
                     beforeEachTest {
                         presenter.onReturnDateClicked()
                         presenter.onReturnDateSelected(returnDate)
                     }
-                    it("should show return date picker]") {
+                    it("should show return date picker") {
                         verifyOrder {
                             view.showReturnDatePicker(any())
                             view.showReturnDate(returnDate)
@@ -212,14 +211,14 @@ class FlightOrderPresenterTest : Spek({
                     }
                 }
 
-                describe("on date selected before") {
-                    val returnDate = mockk<DateTime>()
+                describe("on return date selected before") {
+                    val returnDate by memoized { DateTime() }
                     beforeEachTest {
                         presenter.onReturnDateClicked()
                         presenter.onReturnDateSelected(returnDate)
                         presenter.onReturnDateClicked()
                     }
-                    it("should show return date picker]") {
+                    it("should show return date picker") {
                         verifyOrder {
                             view.showReturnDatePicker(any())
                             view.showReturnDate(returnDate)
@@ -239,7 +238,7 @@ class FlightOrderPresenterTest : Spek({
                     presenter.onReturnDateSelected(mockk())
                     presenter.onClearReturnDateClicked()
                 }
-                it ("should hide return date") {
+                it("should hide return date") {
                     verify {
                         view.updateReturnDateVisiblity(false)
                         view.showReturnDateButton(true)
@@ -260,7 +259,7 @@ class FlightOrderPresenterTest : Spek({
                     presenter.onFindFlightsButtonClicked()
                 }
 
-                it ("should show error") {
+                it("should show error") {
                     verify {
                         interactor.validateData(any())
                     }
@@ -284,7 +283,7 @@ class FlightOrderPresenterTest : Spek({
                     presenter.onArriveCitySelected(arriveCity)
                     presenter.onFindFlightsButtonClicked()
                 }
-                it ("should validate and save data") {
+                it("should validate and save data") {
                     verifyOrder {
                         interactor.validateData(flightData.captured)
                         interactor.saveFlightOrderData(flightData.captured)

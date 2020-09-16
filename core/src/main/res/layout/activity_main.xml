@@ -73,7 +73,7 @@
                             android:orientation="vertical">
 
                             <LinearLayout
-                                android:id="@+id/departCityLayout"
+                                android:id="@+id/departCityButton"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/blue_clickable_background"
@@ -101,7 +101,7 @@
                             <View style="@style/WhiteDivider" />
 
                             <LinearLayout
-                                android:id="@+id/arriveCityLayout"
+                                android:id="@+id/arriveCityButton"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/blue_clickable_background"
@@ -151,7 +151,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/departDateLayout"
+                        android:id="@+id/departDateButton"
                         android:layout_width="wrap_content"
                         android:layout_height="70dp"
                         android:layout_marginStart="60dp"
@@ -178,7 +178,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/returnDateLayout"
+                        android:id="@+id/returnDateButton"
                         android:layout_width="wrap_content"
                         android:layout_height="70dp"
                         android:layout_marginStart="16dp"
@@ -207,7 +207,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/returnDateButton"
+                        android:id="@+id/addReturnDateButton"
                         android:layout_width="wrap_content"
                         android:layout_height="70dp"
                         android:layout_marginStart="16dp"
@@ -219,7 +219,7 @@
                         android:paddingEnd="5dp">
 
                         <TextView
-                            android:id="@+id/returnDateButtonLabel"
+                            android:id="@+id/addReturnDateButtonLabel"
                             fontPath="@string/fontOpenSansRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

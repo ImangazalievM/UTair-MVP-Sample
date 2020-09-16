@@ -15,18 +15,12 @@ class WeatherForecastPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
+        viewState.showForecastForCities(departCity, arriveCity)
         onTabSelected(DEPART_CITY_TAB_POSITION)
-        showCitiesForecasts()
     }
 
     fun onTabSelected(position: Int) {
-        viewState.setTabSelected(position)
         viewState.openForecastPage(position)
-    }
-
-    private fun showCitiesForecasts() {
-        viewState.showCitiesNames(departCity, arriveCity)
-        viewState.showForecastForCities(departCity, arriveCity)
     }
 
     companion object {
