@@ -14,6 +14,7 @@ The project contains 3 modules:
 
 This project includes the following libraries, tools and solutions:
 
+- [Clean Architecture](https://github.com/ImangazalievM/CleanArchitectureManifest)
 - [Dagger 2](https://github.com/google/dagger) / [Toothpick](https://github.com/stephanenicolas/toothpick) - for dependency injection
 - [RxJava 2](https://github.com/ReactiveX/RxJava) / [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - for multithreading
 - [Moxy](https://github.com/Arello-Mobile/Moxy) - for MVP pattern implementation
