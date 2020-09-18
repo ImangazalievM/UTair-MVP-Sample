@@ -86,10 +86,6 @@ abstract class BaseActivity : MvpAppCompatActivity() {
         outState.putBoolean(STATE_SCOPE_WAS_CLOSED, needCloseScope()) //save it but will be used only if destroyed
     }
 
-    fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
     //these methods are created to customize it in child classes if it needed
     protected open fun bindNavigationContext() {
         navigationContextBinder.bind(createNavigationContext())

@@ -1,10 +1,13 @@
 package com.utair.presentation.mvp.flightorder
 
 import com.arellomobile.mvp.InjectViewState
+import com.utair.R
 import com.utair.domain.global.models.FlightOrderData
 import com.utair.domain.flightorder.MainInteractor
+import com.utair.domain.global.ResourceManager
 import com.utair.domain.global.exceptions.NoNetworkException
 import com.utair.domain.global.exceptions.FlightOrderDataValidationError
+import com.utair.domain.global.exceptions.PassengersDataValidationError
 import com.utair.presentation.ui.global.base.mvp.BasePresenter
 import com.utair.presentation.ui.global.navigation.WeatherForecastScreen
 import com.utair.presentation.mvp.global.ErrorHandler
@@ -17,14 +20,16 @@ import javax.inject.Inject
 class FlightOrderPresenter @Inject constructor(
         private val interactor: MainInteractor,
         private val navigator: Navigator,
+        private val resourceManager: ResourceManager,
         private val errorHandler: ErrorHandler
 ) : BasePresenter<FlightOrderView>() {
 
+    private lateinit var cities: List<String>
     private var departCity: String? = null
     private var arriveCity: String? = null
     private var departureDate: DateTime = DateTime()
     private var arriveDate: DateTime? = DateTime().plusWeeks(1)
-    private lateinit var cities: List<String>
+    private var passengersData = PassengersData(1, 0, 0)
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -89,6 +94,7 @@ class FlightOrderPresenter @Inject constructor(
 
     fun onReturnDateSelected(returnDate: DateTime) {
         this.arriveDate = returnDate
+        viewState.updateReturnDateVisibility(true)
         viewState.showReturnDate(returnDate)
     }
 
@@ -96,10 +102,18 @@ class FlightOrderPresenter @Inject constructor(
         viewState.showReturnDatePicker(arriveDate ?: departureDate)
     }
 
-    fun onClearReturnDateClicked() {
+    fun onRemoveReturnDateClicked() {
         arriveDate = null
-        viewState.hideReturnDate()
-        viewState.showReturnDateButton()
+        viewState.updateReturnDateVisibility(true)
+    }
+
+    fun onPassengersValueChanged(data: PassengersData) {
+        try {
+            interactor.validatePassengersData(data)
+            passengersData = data
+        } catch (error: Exception) {
+            handlePassengersValidationError(error)
+        }
     }
 
     fun onFindFlightsButtonClicked() {
@@ -114,6 +128,15 @@ class FlightOrderPresenter @Inject constructor(
             navigator.goForward(screen)
         } catch (error: Exception) {
             handleValidationError(error)
+        }
+    }
+
+    private fun handlePassengersValidationError(throwable: Throwable) {
+        viewState.showPassengersData(passengersData)
+        if (throwable is PassengersDataValidationError) {
+            viewState.showMessage(throwable.errorMessage)
+        } else {
+            errorHandler.handle(throwable)
         }
     }
 
@@ -151,7 +174,8 @@ class FlightOrderPresenter @Inject constructor(
 
     private fun handleFetchCitiesError(throwable: Throwable) {
         if (throwable is NoNetworkException) {
-            viewState.showNoNetworkMessage()
+            val message = resourceManager.getString(R.string.no_network_message)
+            viewState.showMessage(message)
         } else {
             errorHandler.handle(throwable)
         }

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:orientation="vertical"
+    tools:showIn="LinearLayout">
+
+    <ImageView
+        android:id="@+id/incrementButton"
+        style="@style/PassengerCounterButton"
+        app:srcCompat="@drawable/ic_plus_10dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/counterValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/PassengerCounterValue"
+                tools:text="2" />
+
+            <ImageView
+                android:id="@+id/counterIcon"
+                style="@style/PassengerCounterIcon"
+                tools:srcCompat="@drawable/ic_passenger_adult" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/counterLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/PassengerCounterLabel"
+            tools:text="@string/adult_passenger" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/decrementButton"
+        style="@style/PassengerCounterButton"
+        app:srcCompat="@drawable/ic_minus_10dp" />
+</merge>

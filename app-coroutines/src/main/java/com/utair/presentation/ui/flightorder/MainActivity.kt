@@ -15,6 +15,7 @@ import com.utair.core.databinding.ActivityMainBinding
 import com.utair.di.get
 import com.utair.presentation.mvp.flightorder.FlightOrderPresenter
 import com.utair.presentation.mvp.flightorder.FlightOrderView
+import com.utair.presentation.mvp.flightorder.PassengersData
 import com.utair.presentation.ui.global.base.BaseActivity
 import com.utair.presentation.ui.global.visible
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
@@ -56,11 +57,14 @@ class MainActivity : BaseActivity(), FlightOrderView {
         binding.returnDateButton.setOnClickListener {
             presenter.onReturnDateClicked()
         }
-        binding.returnDateButton.setOnClickListener {
+        binding.addReturnDateButton.setOnClickListener {
             presenter.onSetReturnDateButtonClicked()
         }
-        binding.cleaReturnDateButton.setOnClickListener {
+        binding.removeReturnDateButton.setOnClickListener {
             presenter.onClearReturnDateClicked()
+        }
+        binding.passengerCountPicker.onValueChangedListener = {
+            presenter.onPassengersValueChanged(it)
         }
         binding.findFlightsButton.setOnClickListener {
             presenter.onFindFlightsButtonClicked()
@@ -122,10 +126,10 @@ class MainActivity : BaseActivity(), FlightOrderView {
         binding.returnDateView.text = dateFormatter.format(returnDate.toDate())
     }
 
-    override fun updateReturnDateVisiblity(isVisible: Boolean) {
+    override fun updateReturnDateVisibility(isVisible: Boolean) {
         binding.returnDateButton.visible(isVisible)
-        binding.returnDateButton.visible(!isVisible)
-        binding.cleaReturnDateButton.visible(isVisible)
+        binding.addReturnDateButton.visible(!isVisible)
+        binding.removeReturnDateButton.visible(isVisible)
     }
 
     override fun showReturnDatePicker(returnDate: DateTime) {
@@ -134,18 +138,18 @@ class MainActivity : BaseActivity(), FlightOrderView {
         }
     }
 
-    override fun showReturnDateButton(isVisible: Boolean) {
-        binding.returnDateButton.visible(isVisible)
-    }
-
-    override fun showNoNetworkMessage() {
-        Toast.makeText(this, getString(R.string.no_network_message), Toast.LENGTH_SHORT).show()
+    override fun showPassengersData(passengersData: PassengersData) {
+        binding.passengerCountPicker.setValues(passengersData)
     }
 
     override fun showValidationErrorMessage(errorMessage: String) {
         val snackbar = Snackbar.make(binding.snackbarContainer, errorMessage, Snackbar.LENGTH_LONG)
         snackbar.view.setBackgroundResource(R.color.color_blue_dark100)
         snackbar.show()
+    }
+
+    override fun showMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun showDatePicker(date: DateTime, onDateSelected: (DateTime) -> Unit) {
@@ -155,7 +159,7 @@ class MainActivity : BaseActivity(), FlightOrderView {
                 },
                 date.year,
                 date.monthOfYear().get(),
-                date.dayOfWeek().get()
+                date.dayOfMonth().get()
         )
         datePickerDialog.show(supportFragmentManager, "DatePickerDialog")
     }

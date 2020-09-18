@@ -240,7 +240,7 @@ class FlightOrderPresenterTest : Spek({
                 }
                 it("should hide return date") {
                     verify {
-                        view.updateReturnDateVisiblity(false)
+                        view.updateReturnDateVisibility(false)
                         view.showReturnDateButton(true)
                     }
                 }
@@ -254,14 +254,14 @@ class FlightOrderPresenterTest : Spek({
             describe("on invalid flight data") {
                 beforeEachTest {
                     every {
-                        interactor.validateData(capture(flightData))
+                        interactor.validateFlightOrderData(capture(flightData))
                     } throws FlightOrderDataValidationError("My error message")
                     presenter.onFindFlightsButtonClicked()
                 }
 
                 it("should show error") {
                     verify {
-                        interactor.validateData(any())
+                        interactor.validateFlightOrderData(any())
                     }
 
                     verify(inverse = true) {
@@ -276,7 +276,7 @@ class FlightOrderPresenterTest : Spek({
                 val arriveCity = "St. Petersburg"
 
                 beforeEachTest {
-                    every { interactor.validateData(capture(flightData)) } just Runs
+                    every { interactor.validateFlightOrderData(capture(flightData)) } just Runs
                     every { interactor.saveFlightOrderData(capture(flightData)) } just Runs
                     every { navigator.goForward(any<WeatherForecastScreen>()) } just Runs
                     presenter.onDepartCitySelected(departCity)
@@ -285,7 +285,7 @@ class FlightOrderPresenterTest : Spek({
                 }
                 it("should validate and save data") {
                     verifyOrder {
-                        interactor.validateData(flightData.captured)
+                        interactor.validateFlightOrderData(flightData.captured)
                         interactor.saveFlightOrderData(flightData.captured)
                         navigator.goForward(any<WeatherForecastScreen>())
                     }

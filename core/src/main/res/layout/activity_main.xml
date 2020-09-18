@@ -233,7 +233,7 @@
                     </LinearLayout>
 
                     <ImageView
-                        android:id="@+id/cleaReturnDateButton"
+                        android:id="@+id/removeReturnDateButton"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="16dp"
@@ -253,7 +253,7 @@
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal">
 
-                    <com.utair.presentation.ui.flightorder.PassengerCountPicker
+                    <com.utair.presentation.ui.flightorder.PassengersCountPicker
                         android:id="@+id/passengerCountPicker"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent" />

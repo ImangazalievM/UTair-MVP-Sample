@@ -6,55 +6,7 @@
     android:background="@color/color_blue"
     android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="@color/color_blue"
-        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/adultPassengerIncrementButton"
-            style="@style/PassengerCounterButton"
-            app:srcCompat="@drawable/ic_plus_10dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="16dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/adultCounterValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2"
-                    android:textAppearance="@style/PassengerCounterValue" />
-
-                <ImageView
-                    android:id="@+id/adultCounteIcon"
-                    style="@style/PassengerCounterIcon"
-                    app:srcCompat="@drawable/ic_passenger_adult" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/adultCounterLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/adult_passenger"
-                android:textAppearance="@style/PassengerCounterLabel" />
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/adultPassengerDecrementButton"
-            style="@style/PassengerCounterButton"
-            app:srcCompat="@drawable/ic_minus_10dp" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

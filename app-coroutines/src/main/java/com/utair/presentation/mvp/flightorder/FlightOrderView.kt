@@ -32,15 +32,15 @@ interface FlightOrderView : MvpView {
 
     fun showReturnDate(returnDate: DateTime)
 
-    fun updateReturnDateVisiblity(isVisible: Boolean)
+    fun updateReturnDateVisibility(isVisible: Boolean)
 
     @StateStrategyType(OneExecutionStateStrategy::class)
     fun showReturnDatePicker(returnDate: DateTime)
 
-    fun showReturnDateButton(isVisible: Boolean)
-
-    fun showNoNetworkMessage()
+    fun showPassengersData(passengersData: PassengersData)
 
     fun showValidationErrorMessage(errorMessage: String)
+
+    fun showMessage(text: String)
 
 }

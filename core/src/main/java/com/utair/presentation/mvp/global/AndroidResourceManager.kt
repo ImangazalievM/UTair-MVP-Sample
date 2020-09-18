@@ -8,8 +8,8 @@ class AndroidResourceManager @Inject constructor(
         private val context: Context
 ) : ResourceManager {
 
-    override fun getString(resourceId: Int): String {
-        return context.resources.getString(resourceId)
+    override fun getString(resourceId: Int, vararg args: Any): String {
+        return context.resources.getString(resourceId, *args)
     }
 
     override fun getInteger(resourceId: Int): Int {
