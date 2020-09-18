@@ -9,18 +9,19 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion("29.0.3")
+    compileSdkVersion(Build.Versions.compileSdk)
+    buildToolsVersion(Build.Versions.buildTools)
 
     defaultConfig {
         applicationId = "com.utair"
-        minSdkVersion(17)
-        targetSdkVersion(29)
+        minSdkVersion(Build.Versions.minSdk)
+        targetSdkVersion(Build.Versions.targetSdk)
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
     }
 
     testOptions {
@@ -71,4 +72,9 @@ dependencies {
     testImplementation(Dependencies.Tests.strikt)
 
     testImplementation(Dependencies.Tests.okhttpMockServer)
+
+    testImplementation(Dependencies.Tests.junit)
+    testImplementation(Dependencies.Tests.rules)
+    androidTestImplementation(Dependencies.Tests.kakao)
+    androidTestImplementation(Dependencies.Tests.kaspresso)
 }

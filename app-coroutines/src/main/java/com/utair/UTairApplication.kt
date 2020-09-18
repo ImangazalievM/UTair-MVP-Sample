@@ -1,7 +1,9 @@
 package com.utair
 
 import android.app.Application
+import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.multidex.MultiDex
 import com.utair.data.global.network.ApiConstants
 import com.utair.di.AppModule
 import com.utair.di.AppNavigationModule
@@ -49,6 +51,11 @@ class UTairApplication : Application() {
                                 weatherApiBaseUrl = ApiConstants.OPEN_WEATHER_BASE_URL
                         )
                 )
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
 }

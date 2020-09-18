@@ -1,7 +1,9 @@
 package com.utair
 
 import android.app.Application
+import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.multidex.MultiDex
 import com.utair.data.global.network.ApiConstants
 import com.utair.di.ApplicationComponent
 import com.utair.di.DaggerApplicationComponent
@@ -28,7 +30,7 @@ class UTairApplication : Application() {
         applicationComponent = prepareComponent()
     }
 
-    fun prepareComponent(): ApplicationComponent {
+    private fun prepareComponent(): ApplicationComponent {
         return DaggerApplicationComponent.builder()
                 .dataModule(DataModule(
                         utairApiBaseUrl = ApiConstants.CITIES_BASE_URL,
@@ -37,6 +39,11 @@ class UTairApplication : Application() {
                 .applicationModule(ApplicationModule(applicationContext))
                 .navigationModule(NavigationModule())
                 .build()
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
     }
 
     companion object {

@@ -9,12 +9,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
-    buildToolsVersion("29.0.3")
+    compileSdkVersion(Build.Versions.compileSdk)
+    buildToolsVersion(Build.Versions.buildTools)
 
     defaultConfig {
-        minSdkVersion(17)
-        targetSdkVersion(29)
+        minSdkVersion(Build.Versions.minSdk)
+        targetSdkVersion(Build.Versions.targetSdk)
 
         val properties = Properties()
         val propsFile = project.rootProject.file("api_keys.properties")
@@ -24,6 +24,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
     }
 
     buildFeatures.viewBinding = true
@@ -42,6 +43,8 @@ android {
 }
 
 dependencies {
+    api("com.android.support:multidex:1.0.3")
+
     api("androidx.appcompat:appcompat:1.2.0")
     api("com.google.android.material:material:1.2.1")
     api("androidx.recyclerview:recyclerview:1.1.0")
@@ -53,14 +56,14 @@ dependencies {
 
     api("com.squareup.retrofit2:retrofit:2.9.0")
     api("com.squareup.retrofit2:converter-gson:2.9.0")
-    api("com.squareup.okhttp3:logging-interceptor:${Versions.okhttpVersion}")
+    api("com.squareup.okhttp3:logging-interceptor:${Dependencies.Versions.okhttpVersion}")
 
     api("io.github.inflationx:calligraphy3:3.1.1")
     api("io.github.inflationx:viewpump:2.0.3")
 
     api("com.wdullaer:materialdatetimepicker:4.2.3")
     api("com.afollestad.material-dialogs:core:3.3.0")
-    api("joda-time:joda-time:2.9.9")
+    api("joda-time:joda-time:2.10.6")
 
     api("com.jakewharton.timber:timber:4.7.1")
 }
