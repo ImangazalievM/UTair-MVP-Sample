@@ -11,25 +11,13 @@ class FlightOrderDataValidator @Inject constructor(
 ) {
 
     fun validate(flightOrderData: FlightOrderData) {
-        val validateErrors = validateFlightOrderData(flightOrderData)
-        // send one error for processing
-        validateErrors.firstOrNull()?.let {
-            throw it
-        }
-    }
-
-    private fun validateFlightOrderData(flightOrderData: FlightOrderData): List<FlightOrderDataValidationError> {
-        val validateErrors = mutableListOf<FlightOrderDataValidationError>()
-
         if (flightOrderData.departCity == null) {
-            validateErrors.add(validationError(R.string.depart_city_is_empty_message))
+            throw validationError(R.string.depart_city_is_empty_message)
         }
 
         if (flightOrderData.arriveCity == null) {
-            validateErrors.add(validationError(R.string.arrive_city_is_empty_message))
+            throw validationError(R.string.arrive_city_is_empty_message)
         }
-        
-        return validateErrors
     }
 
     private fun validationError(stringResId: Int): FlightOrderDataValidationError {

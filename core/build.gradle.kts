@@ -40,6 +40,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -66,4 +69,9 @@ dependencies {
     api("joda-time:joda-time:2.10.6")
 
     api("com.jakewharton.timber:timber:4.7.1")
+
+    testImplementation(Dependencies.Tests.spek)
+    testImplementation(Dependencies.Tests.spekRunner)
+    testImplementation(Dependencies.Tests.mockk)
+    testImplementation(Dependencies.Tests.strikt)
 }

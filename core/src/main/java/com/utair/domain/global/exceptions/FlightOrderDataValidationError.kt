@@ -2,4 +2,4 @@ package com.utair.domain.global.exceptions
 
 class FlightOrderDataValidationError(
         val errorMessage: String
-) : Exception()
+) : Exception(errorMessage)

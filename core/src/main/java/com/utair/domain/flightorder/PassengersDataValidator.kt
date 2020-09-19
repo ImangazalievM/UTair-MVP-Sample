@@ -12,34 +12,20 @@ class PassengersDataValidator @Inject constructor(
 ) {
 
     fun validate(passengersData: PassengersData) {
-        val validateErrors = validatePassengersData(passengersData)
-        // send one error for processing
-        validateErrors.firstOrNull()?.let {
-            throw it
-        }
-    }
-
-    private fun validatePassengersData(
-            passengersData: PassengersData
-    ): List<PassengersDataValidationError> {
-        val validateErrors = mutableListOf<PassengersDataValidationError>()
-
         val summaryCount = passengersData.run {
             adultCount + kidCount + babyCount
         }
         val isMaxValueReached = summaryCount > Constants.SUMMARY_MAX_PASSENGERS_COUNT
         if (isMaxValueReached) {
-            validateErrors.add(validationError(
+            throw validationError(
                     R.string.max_passenger_count_message,
                     Constants.SUMMARY_MAX_PASSENGERS_COUNT
-            ))
+            )
         }
 
         if (passengersData.babyCount > passengersData.adultCount) {
-            validateErrors.add(validationError(R.string.babies_less_adults_message))
+            throw validationError(R.string.babies_less_adults_message)
         }
-
-        return validateErrors
     }
 
     private fun validationError(
