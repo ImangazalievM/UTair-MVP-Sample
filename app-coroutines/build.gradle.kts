@@ -73,8 +73,8 @@ dependencies {
 
     testImplementation(Dependencies.Tests.okhttpMockServer)
 
-    testImplementation(Dependencies.Tests.junit)
-    testImplementation(Dependencies.Tests.rules)
+    androidTestImplementation(Dependencies.Tests.junit)
+    androidTestImplementation(Dependencies.Tests.rules)
     androidTestImplementation(Dependencies.Tests.kakao)
     androidTestImplementation(Dependencies.Tests.kaspresso)
 }
