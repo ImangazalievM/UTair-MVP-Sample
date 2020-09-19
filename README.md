@@ -19,8 +19,9 @@ This project includes the following libraries, tools and solutions:
 - [RxJava 2](https://github.com/ReactiveX/RxJava) / [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - for multithreading
 - [Moxy](https://github.com/Arello-Mobile/Moxy) - for MVP pattern implementation
 - [Alligator](https://github.com/aartikov/Alligator) - for screens navigatio
-- [Spek](https://github.com/spekframework/spek) + [MockK](https://github.com/mockk/mockk) - for unit-tests
+- [Spek](https://github.com/spekframework/spek) + [MockK](https://github.com/mockk/mockk) + [Strikt](https://github.com/robfletcher/strikt/) - for unit-tests
 - [Kaspresso](https://github.com/KasperskyLab/Kaspresso) - for UI-tests
+- Gradle Kotlin DSL
 
 ### 🌦 Open Weather API
 
