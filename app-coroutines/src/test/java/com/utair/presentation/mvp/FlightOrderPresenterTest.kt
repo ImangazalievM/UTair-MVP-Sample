@@ -1,6 +1,8 @@
 package com.utair.presentation.mvp
 
+import com.utair.R
 import com.utair.domain.flightorder.MainInteractor
+import com.utair.domain.global.ResourceManager
 import com.utair.domain.global.exceptions.FlightOrderDataValidationError
 import com.utair.domain.global.exceptions.NoNetworkException
 import com.utair.domain.global.models.FlightOrderData
@@ -24,6 +26,7 @@ class FlightOrderPresenterTest : Spek({
 
     val interactor by memoized(CachingMode.TEST) { mockk<MainInteractor>() }
     val navigator by memoized { mockk<Navigator>() }
+    val resourceManager by memoized { mockk<ResourceManager>() }
     val errorHandler by memoized { mockk<ErrorHandler>() }
     val view by memoized { mockk<FlightOrderView>(relaxed = true) }
 
@@ -31,6 +34,7 @@ class FlightOrderPresenterTest : Spek({
         FlightOrderPresenter(
                 interactor = interactor,
                 navigator = navigator,
+                resourceManager = resourceManager,
                 errorHandler = errorHandler
         )
     }
@@ -68,15 +72,17 @@ class FlightOrderPresenterTest : Spek({
         }
 
         describe("no network error when loading cities list") {
+            val noNetworkMessage = "Network is not available"
             beforeEachTest {
                 coEvery { interactor.getCities() } throws NoNetworkException("Error message")
+                every { resourceManager.getString(R.string.no_network_message) } returns noNetworkMessage
                 presenter.attachView(view)
             }
 
             it("should show network error") {
                 coVerify {
                     interactor.getCities()
-                    view.showNoNetworkMessage()
+                    view.showMessage(noNetworkMessage)
                 }
             }
         }
@@ -241,7 +247,6 @@ class FlightOrderPresenterTest : Spek({
                 it("should hide return date") {
                     verify {
                         view.updateReturnDateVisibility(false)
-                        view.showReturnDateButton(true)
                     }
                 }
             }
