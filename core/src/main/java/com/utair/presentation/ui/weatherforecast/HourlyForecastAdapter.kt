@@ -31,7 +31,7 @@ class HourlyForecastAdapter(
         holder.time.text = timeFormatter.format(hourlyForecast.dateTime.toDate())
         holder.weatherIcon.setImageResource(getIconForCondition(hourlyForecast.condition))
         holder.temperature.text = String.format("%.2f °C", hourlyForecast.temperature)
-        holder.windSpeed.text = String.format("%.2f м/с", hourlyForecast.speed)
+        holder.windSpeed.text = String.format("%.2f m/s", hourlyForecast.speed)
     }
 
     override fun getItemCount() = hourlyForecasts.size
