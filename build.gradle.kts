@@ -12,14 +12,6 @@ buildscript {
     }
 }
 
-extra.apply {
-    val kotlinVersion = "1.3.72"
-    set("kotlinVersion", kotlinVersion)
-    set("junitPlatform", "1.0.1")
-    set("spekVersion", "2.0.0-rc.1")
-
-}
-
 allprojects {
     repositories {
         google()
