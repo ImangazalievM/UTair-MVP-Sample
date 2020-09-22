@@ -3,7 +3,6 @@ package com.utair.di
 import com.google.gson.GsonBuilder
 import com.utair.data.global.UTairPreferences
 import com.utair.data.global.network.*
-import com.utair.data.global.network.mappers.CitiesListResponseMapper
 import com.utair.data.global.network.mappers.WeatherForecastResponseMapper
 import com.utair.data.global.network.responses.WeatherForecastResponse
 import okhttp3.OkHttpClient
@@ -23,9 +22,6 @@ class DataModule(
 
         bind(NetworkChecker::class)
                 .toProviderInstance { NetworkChecker(getGlobal()) }
-
-        bind(CitiesListResponseMapper::class)
-                .toProviderInstance { CitiesListResponseMapper() }
 
         bind(WeatherForecastResponseMapper::class)
                 .toProviderInstance { WeatherForecastResponseMapper() }
