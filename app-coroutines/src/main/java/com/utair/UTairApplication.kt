@@ -2,16 +2,10 @@ package com.utair
 
 import android.app.Application
 import android.content.Context
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDex
 import com.utair.data.global.network.ApiConstants
-import com.utair.di.AppModule
-import com.utair.di.AppNavigationModule
-import com.utair.di.DataModule
-import com.utair.di.DomainModule
-import io.github.inflationx.calligraphy3.CalligraphyConfig
-import io.github.inflationx.calligraphy3.CalligraphyInterceptor
-import io.github.inflationx.viewpump.ViewPump
+import com.utair.di.*
+import com.utair.global.appinitializer.AppInitializer
 import toothpick.Toothpick
 import toothpick.configuration.Configuration
 import java.util.*
@@ -24,14 +18,7 @@ class UTairApplication : Application() {
         super.onCreate()
 
         initDi()
-
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-
-        val calligraphyInterceptor = CalligraphyInterceptor(CalligraphyConfig.Builder().build())
-        val viewPumpConfig = ViewPump.builder()
-                .addInterceptor(calligraphyInterceptor)
-                .build()
-        ViewPump.init(viewPumpConfig)
+        getGlobal<AppInitializer>()
     }
 
     private fun initDi() {
