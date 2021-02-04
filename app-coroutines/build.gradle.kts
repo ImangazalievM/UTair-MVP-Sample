@@ -24,14 +24,6 @@ android {
         multiDexEnabled = true
     }
 
-    testOptions {
-        junitPlatform {
-            filters {
-                includeEngines("spek2")
-            }
-        }
-    }
-
     buildFeatures.viewBinding = true
 
     buildTypes {
